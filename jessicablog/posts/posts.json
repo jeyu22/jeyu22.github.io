@@ -1,0 +1,36 @@
+[
+  {
+    "path": "posts/2021-08-11-my-first-post/",
+    "title": "My First Post",
+    "description": "I'm really struggling with the distill package! And git commands!",
+    "author": [
+      {
+        "name": "Jessica",
+        "url": {}
+      }
+    ],
+    "date": "2021-08-11",
+    "categories": [],
+    "contents": "\nI spent about 1 hour deleting and cloning and merging different repositories.. instead of properly learning git commands I’ve been relying on the integrated git feature in RStudio.\n\n\n\n",
+    "preview": {},
+    "last_modified": "2021-08-12T00:08:49-04:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/welcome/",
+    "title": "Welcome to Crouton Thoughts",
+    "description": "Welcome to our new blog, Crouton Thoughts. We hope you enjoy \nreading what we have to say!",
+    "author": [
+      {
+        "name": "Nora Jones",
+        "url": "https://example.com/norajones"
+      }
+    ],
+    "date": "2021-08-11",
+    "categories": [],
+    "contents": "\n\n\n\n",
+    "preview": {},
+    "last_modified": "2021-08-11T23:43:52-04:00",
+    "input_file": {}
+  }
+]
