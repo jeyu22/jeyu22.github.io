@@ -1,0 +1,15 @@
+---
+title: "My First Post"
+description: |
+  I'm really struggling with the distill package! And git commands!
+author:
+  - name: Jessica
+date: 08-11-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+
+I spent about 1 hour deleting and cloning and merging different repositories.. instead of properly learning git commands I've been relying on the integrated git feature in RStudio. 

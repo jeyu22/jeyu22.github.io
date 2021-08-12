@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>Crouton Thoughts</title>
+    <link>https://jeyu22.github.io/</link>
+    <atom:link href="https://jeyu22.github.io/index.xml" rel="self" type="application/rss+xml"/>
+    <description>Food, statistics, and musings from a 20-year old college student.
+</description>
+    <generator>Distill</generator>
+    <lastBuildDate>Wed, 11 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>My First Post</title>
+      <dc:creator>Jessica</dc:creator>
+      <link>https://jeyu22.github.io/posts/2021-08-11-my-first-post</link>
+      <description>I'm really struggling with the distill package! And git commands!</description>
+      <guid>https://jeyu22.github.io/posts/2021-08-11-my-first-post</guid>
+      <pubDate>Wed, 11 Aug 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Welcome to Crouton Thoughts</title>
+      <dc:creator>Nora Jones</dc:creator>
+      <link>https://jeyu22.github.io/posts/welcome</link>
+      <description>Welcome to our new blog, Crouton Thoughts. We hope you enjoy 
+reading what we have to say!</description>
+      <guid>https://jeyu22.github.io/posts/welcome</guid>
+      <pubDate>Wed, 11 Aug 2021 00:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>

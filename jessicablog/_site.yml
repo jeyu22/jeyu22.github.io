@@ -1,8 +1,8 @@
 name: "jessicablog"
 title: "Crouton Thoughts"
 description: |
-  Crouton Thoughts
-output_dir: "docs"
+  Food, statistics, and musings from a 20-year old college student.
+base_url: https://jeyu22.github.io/
 navbar:
   right:
     - text: "Home"
