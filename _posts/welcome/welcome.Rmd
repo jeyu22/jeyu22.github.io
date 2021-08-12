@@ -26,7 +26,7 @@ knitr::opts_chunk$set(echo = FALSE)
 # Introduction
 
 ```{r, echo = FALSE, fig.align = 'center', out.width = '50%', results = 'markup'} 
-knitr::include_graphics(here("images","profilepic.png"))
+knitr::include_graphics(here("images","profilepic.PNG"))
 ```
 Hi! My name is Jessica. 
 
