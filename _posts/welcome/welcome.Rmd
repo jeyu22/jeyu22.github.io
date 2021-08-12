@@ -1,8 +1,7 @@
 ---
 title: "Welcome to Crouton Thoughts"
 description: |
-  Welcome to our new blog, Crouton Thoughts. We hope you enjoy 
-  reading what we have to say!
+  The world needs to hear what I have to say!
 author:
   - name: Jessica
     url: https://github.com/jeyu22
@@ -23,10 +22,28 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
-# Introduction
 
 ```{r, echo = FALSE, fig.align = 'center', out.width = '50%', results = 'markup'} 
-knitr::include_graphics(here("images","profilepic.PNG"))
+knitr::include_graphics("profilepic.PNG")
 ```
-Hi! My name is Jessica. 
+Hi! My name is Jessica. I'm a senior at Amherst College studying statistics and psychology. I made this blog for fun in hopes of motivating myself to be a more active programmer and data scientist! I love R and #TidyTuesday. Besides statistics I enjoy finding new places to eat in the D.C/Maryland/Virginia area. 
+
+Here's a list (mainly for myself) of posts I want to make in the next few months:
+
+- Ratings of all the restaurants/cafes I've tried (ideally on a leaflet plot...)
+- Food reviews...
+- Tidy Tuesday challenges
+- Side projects..
+
+I'm also writing a statistics thesis this upcoming fall, so hopefully I'll post updates as that progresses!
+
+### Why croutons?
+
+They're versatile: as a topping for salad, a tasty snack, or an entire meal. My favorite croutons are the ones that come with the caesar salad at Costco. 
+
+
+
+
+
+  
 

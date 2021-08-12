@@ -21,7 +21,7 @@
   {
     "path": "posts/welcome/",
     "title": "Welcome to Crouton Thoughts",
-    "description": "Welcome to our new blog, Crouton Thoughts. We hope you enjoy \nreading what we have to say!",
+    "description": "The world needs to hear what I have to say!",
     "author": [
       {
         "name": "Jessica",
@@ -30,9 +30,9 @@
     ],
     "date": "2021-08-11",
     "categories": [],
-    "contents": "\nIntroduction\n\n\n\nHi! My name is Jessica.\n\n\n\n",
-    "preview": {},
-    "last_modified": "2021-08-12T00:59:18-04:00",
-    "input_file": "welcome.utf8.md"
+    "contents": "\n\n\n\nHi! My name is Jessica. I’m a senior at Amherst College studying statistics and psychology. I made this blog for fun in hopes of motivating myself to be a more active programmer and data scientist! I love R and #TidyTuesday. Besides statistics I enjoy finding new places to eat in the D.C/Maryland/Virginia area.\nHere’s a list (mainly for myself) of posts I want to make in the next few months:\nRatings of all the restaurants/cafes I’ve tried (ideally on a leaflet plot…)\nFood reviews…\nTidy Tuesday challenges\nSide projects..\nI’m also writing a statistics thesis this upcoming fall, so hopefully I’ll post updates as that progresses!\nWhy croutons?\nThey’re versatile: as a topping for salad, a tasty snack, or an entire meal. My favorite croutons are the ones that come with the caesar salad at Costco.\n\n\n\n",
+    "preview": "posts/welcome/profilepic.PNG",
+    "last_modified": "2021-08-12T01:20:53-04:00",
+    "input_file": {}
   }
 ]
