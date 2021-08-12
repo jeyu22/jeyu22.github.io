@@ -10,11 +10,13 @@
       }
     ],
     "date": "2021-08-11",
-    "categories": [],
+    "categories": [
+      "test"
+    ],
     "contents": "\nI spent about 1 hour deleting and cloning and merging different repositories.. instead of properly learning git commands I’ve been relying on the integrated git feature in RStudio.\n\n\n\n",
     "preview": {},
-    "last_modified": "2021-08-12T00:29:43-04:00",
-    "input_file": "my-first-post.utf8.md"
+    "last_modified": "2021-08-12T00:36:46-04:00",
+    "input_file": {}
   },
   {
     "path": "posts/welcome/",
@@ -22,15 +24,15 @@
     "description": "Welcome to our new blog, Crouton Thoughts. We hope you enjoy \nreading what we have to say!",
     "author": [
       {
-        "name": "Nora Jones",
-        "url": "https://example.com/norajones"
+        "name": "Jessica",
+        "url": "https://github.com/jeyu22"
       }
     ],
     "date": "2021-08-11",
     "categories": [],
-    "contents": "\n\n\n\n",
+    "contents": "\nIntroduction\n\n\n\nHi! My name is Jessica.\n\n\n\n",
     "preview": {},
-    "last_modified": "2021-08-11T23:43:52-04:00",
+    "last_modified": "2021-08-12T00:52:44-04:00",
     "input_file": {}
   }
 ]

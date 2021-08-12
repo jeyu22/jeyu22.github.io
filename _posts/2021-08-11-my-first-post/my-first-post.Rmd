@@ -4,6 +4,8 @@ description: |
   I'm really struggling with the distill package! And git commands!
 author:
   - name: Jessica
+categories:
+  - test
 date: 08-11-2021
 output:
   distill::distill_article:
