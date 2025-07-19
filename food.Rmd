@@ -7,14 +7,13 @@ output:
     df_print: paged
 ---
 
-testing testing word 
 ```{r,echo = FALSE, message = F, warning = F}
 library(tidyverse)
 library(leaflet)
 
 m <- leaflet() %>%
   addTiles() %>%  # Add default OpenStreetMap map tiles
-  addMarkers(lng=-122.3415891644071, lat=47.65057489209585, popup="<b>Many Bennies!</b><br>New Zealand Ice Cream <br> w/ Fresh Fruit")
+  addMarkers(lng=-122.3415891644071, lat=47.65057489209585, popup="<b>Many Bennies</b><br>New Zealand Ice Cream <br> w/ Fresh Fruit")
 m  
 
 ```
