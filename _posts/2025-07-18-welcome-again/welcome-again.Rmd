@@ -25,6 +25,7 @@ More specifically, here are some of the topics I'm interested in and what I hope
 - Do different types of parameter restrictions (equality, inequality, bounds) impact estimation of latent class models in different ways?
 
 Some less fleshed out research ideas include..
+
 - Simulated annealing + genetic algorithms and how they compare to traditional algorithms
 - start value quality
 
