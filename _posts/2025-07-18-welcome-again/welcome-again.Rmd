@@ -1,0 +1,38 @@
+---
+title: "My First Post (PhD verison)"
+description: |
+  It's been 4 years since my last post! I still don't know how to use git
+author:
+  - name: Jessica
+categories:
+  - food
+  - research
+date: 07-18-2025
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+Howdy! It's been a while since I last tried to start up this blog again. I want to practice writing up and sharing some of my research I've been working on for the past 3 (!!!!) years. The last time I wrote here I was still a wee little undergraduate student who had 0 idea about grad school and alas... here we are.
+
+* blah 
+- blah
+
+
+
+Of course it wouldn't be me if I didn't talk about food..
+
+I wanted to highlight a new spot in Seattle I really like called [Many Bennies](https://www.manybenniesicecream.com/).
+
+
+```{r, echo = FALSE}
+library(tidyverse)
+library(leaflet)
+
+m <- leaflet() %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addMarkers(lng=-122.3415891644071, lat=47.65057489209585, popup="Many Bennies!")
+m  
+
+```
+

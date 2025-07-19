@@ -9,11 +9,19 @@
       "last_modified": "2025-07-18T22:51:12-07:00"
     },
     {
+      "path": "food.html",
+      "title": "Food Recs in Seattle",
+      "description": "Food I would rec\n",
+      "author": [],
+      "contents": "\n\n\n\n\n\n\n\n\nCrouton Thoughts\n\n\nHome\nAbout\n☰\n\n\n  \n    \n      \n        \n        \n        \n      \n      \n    \n    \n      \n  Home\n\n\n  About\n\n      \n  \n\n\n\n\n\n\nFood Recs in Seattle\n\n\n\n\ntesting testing word\n\n\n\n",
+      "last_modified": "2025-07-18T23:18:04-07:00"
+    },
+    {
       "path": "index.html",
       "title": "Crouton Thoughts",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2025-07-18T22:26:44-07:00"
+      "last_modified": "2025-07-18T23:10:07-07:00"
     }
   ],
   "collections": ["posts/posts.json"]
