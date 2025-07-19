@@ -14,7 +14,7 @@ library(leaflet)
 
 m <- leaflet() %>%
   addTiles() %>%  # Add default OpenStreetMap map tiles
-  addMarkers(lng=-122.3415891644071, lat=47.65057489209585, popup="Many Bennies!")
+  addMarkers(lng=-122.3415891644071, lat=47.65057489209585, popup="Many Bennies!<br>New Zealand Ice Cream <br> Fresh Fruit")
 m  
 
 ```

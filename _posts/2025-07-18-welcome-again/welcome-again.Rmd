@@ -15,15 +15,22 @@ output:
 
 Howdy! It's been a while since I last tried to start up this blog again. I want to practice writing up and sharing some of my research I've been working on for the past 3 (!!!!) years. The last time I wrote here I was still a wee little undergraduate student who had 0 idea about grad school and alas... here we are.
 
-* blah 
-- blah
+It took me a long time to get to the research topics that I'm interested in now. I started my program not even knowing what latent class models are, so I'd like to think I worked myself from the ground up! Broadly, I am interested in digging deeper into measurement models that psychology researchers use. My own personal theory is that the ease of software allows researchers to run extremely complex models with just one line of code and return results in a matter of seconds, leading many to believe that the models are easy to compute and extract values. Most of the time these models are extremely challenging to estimate, and software programs makes a lot of choices that researchers don't about, which can impact their results! One choice in particular is the estimation algorithm used to obtain parameter estimates. My current work, which I will detail in a separate post, compares how two different estimation algorithms result in different solutions for the same model and same dataset!
 
+The model I'm focusing on at the moment is latent class models! Latent class models aim to characterize individuals in a sample into different groups, where each group differs on some unobserved (latent) variable. Latent class models have been used in [substance research](https://pmc.ncbi.nlm.nih.gov/articles/PMC4346305/), [education](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2024.1406562/full), and so much more. Pretty much every field I've encountered in research will have at least 1-2 papers using latent class models. Latent class models differ from machine learning methods that also aim to classify people into groups (k-means clustering) in that the items or predictors are assumed to have measurement error. We assume that the *thing* (or latent variable) that distinguishes different groups is unobservable, and that our items are just an approximation of the *real thing*. Examples include depression, alcohol dependence, burnout, and disordered eating. 
 
+More specifically, here are some of the topics I'm interested in and what I hope to write articles on...
 
-Of course it wouldn't be me if I didn't talk about food..
+- Do Newton-Raphson and Expectation-Maximization Algorithms traverse the latent class likelihood surface in the same way?
+- Do different types of parameter restrictions (equality, inequality, bounds) impact estimation of latent class models in different ways?
 
-I wanted to highlight a new spot in Seattle I really like called [Many Bennies](https://www.manybenniesicecream.com/).
+Some less fleshed out research ideas include..
+- Simulated annealing + genetic algorithms and how they compare to traditional algorithms
+- start value quality
 
+My first article will be how starting values are generated for a popular R package poLCA. Please stay tuned.
+
+Of course it wouldn't be me if I didn't talk about food..I wanted to highlight a new spot in Seattle I really like called [Many Bennies](https://www.manybenniesicecream.com/). They serve New Zealand style ice cream where they blend your choice of fruits with a sweet cream base! It tastes like no other ice cream that I've ever had before. It has the lightness of frozen yogurt but it's creamy and not tart at all! After eating this ice cream I realize how insanely sweet traditional ice cream places are...I'm not even a huge fruit fan but after trying this place I can never go back to Ben and Jerrys or Molly Moons haha. I got blueberries and strawberries and it was the perfect combination. They also give free lactaid which is super cool!
 
 ```{r, echo = FALSE}
 library(tidyverse)
@@ -35,4 +42,8 @@ m <- leaflet() %>%
 m  
 
 ```
+If you made it this far, thanks for reading. Take care!
+
+Jessica
+
 

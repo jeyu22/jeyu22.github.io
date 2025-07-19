@@ -1,7 +1,7 @@
 ---
-title: "About this blog"
+title: ""
 description: |
-  Some additional details about the blog
+  Welcome to my twisted mind..
 output:
   html_document:
     df_print: paged
@@ -15,7 +15,16 @@ knitr::opts_chunk$set(echo = FALSE)
 #knitr::include_graphics("./images/profilepic.PNG")
 ```
 
-testing?
+# Welcome to my twisted mind..
 
-wait where is the text?
+I'm Jessica and thanks for reading my blog! I'm an almost 25 year old Chinese American living in Seattle but originally from Virginia. Currently, I'm a 4th year PhD student at the University of Washington Department of Psychology. I've been enjoying it so far and I'm looking forward to ramping up my research in the next few years. Aside from that I'm also an intern/research analyst at UCSF School Health and Evaluation Research. I feel incredibly lucky to apply some of the knowledge from my graduate training to work on projects that directly make an impact on youth mental health in California!
+
+On this blog you'll find some writing about my research. Writing definitely helps me parse through challenging ideas (and my notes app on my computer is already at 10GB LOL). I'm interested in comparing how estimation algorithms produce different parameter estimates in hard to estimate latent class models. Also, I'm currently exploring how different types of parameter restrictions in latent class models impacts estimation. If you read anything interesting and you'd like to chat, please DM me on Twitter @croutontheory. I don't want to put my email because I'm afraid of SPAM BOTS.
+
+When I'm not doing research, you can find me at whatever new restaurant or cafe that legit just opened 30 seconds ago in Seattle. I'm trying to collate all of my seattle food spots on this page so stay tuned. I spend so much money eating out I might as well document it.
+
+[Disclaimer! The things I write on this blog do not reflect the opinions/views of the institutions that I work at, or my advisor! All thoughts (and mistakes) are my own..]
+
+
+
 
