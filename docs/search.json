@@ -6,7 +6,7 @@
       "description": "Some additional details about the blog\n",
       "author": [],
       "contents": "\n\n\n\n\n\n\n\n\nCrouton Thoughts\n\n\nHome\nAbout\nFood\n☰\n\n\n  \n    \n      \n        \n        \n        \n      \n      \n    \n    \n      \n  Home\n\n\n  About\n\n\n  Food\n\n      \n  \n\n\n\n\n\n\nAbout this blog\n\n\n\n\ntesting?\nwait where is the text?\n\n\n\n\n\n\n\n\n\n\n",
-      "last_modified": "2025-07-18T23:39:47-07:00"
+      "last_modified": "2025-07-18T23:46:39-07:00"
     },
     {
       "path": "food.html",
@@ -14,14 +14,14 @@
       "description": "Food I would rec\n",
       "author": [],
       "contents": "\n\n\n\n\n\n\n\n\nCrouton Thoughts\n\n\nHome\nAbout\nFood\n☰\n\n\n  \n    \n      \n        \n        \n        \n      \n      \n    \n    \n      \n  Home\n\n\n  About\n\n\n  Food\n\n      \n  \n\n\n\n\n\n\nFood Recs in Seattle\n\n\n\n\ntesting testing word\n\n\n\n",
-      "last_modified": "2025-07-18T23:39:48-07:00"
+      "last_modified": "2025-07-18T23:46:40-07:00"
     },
     {
       "path": "index.html",
       "title": "Crouton Thoughts",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2025-07-18T23:39:49-07:00"
+      "last_modified": "2025-07-18T23:46:41-07:00"
     }
   ],
   "collections": ["posts/posts.json"]
