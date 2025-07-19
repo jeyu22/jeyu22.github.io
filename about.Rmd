@@ -2,8 +2,16 @@
 title: "About this blog"
 description: |
   Some additional details about the blog
+output:
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
+
+```{r, echo = FALSE, fig.align = 'center', out.width = '50%', results = 'markup'}
+knitr::include_graphics("./images/profilepic.PNG")
+```
+

@@ -3,17 +3,17 @@
     {
       "path": "about.html",
       "title": "About this blog",
-      "description": "Some additional details about the blog",
+      "description": "Some additional details about the blog\n",
       "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2021-08-12T01:20:58-04:00"
+      "contents": "\n\n\n\n\n\n\n\n\nCrouton Thoughts\n\n\nHome\nAbout\n☰\n\n\n  \n    \n      \n        \n        \n        \n      \n      \n    \n    \n      \n  Home\n\n\n  About\n\n      \n  \n\n\n\n\n\n\nAbout this blog\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+      "last_modified": "2025-07-18T22:35:43-07:00"
     },
     {
       "path": "index.html",
       "title": "Crouton Thoughts",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-08-12T01:20:58-04:00"
+      "last_modified": "2025-07-18T22:26:44-07:00"
     }
   ],
   "collections": ["posts/posts.json"]
