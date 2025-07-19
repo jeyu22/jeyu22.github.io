@@ -14,7 +14,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-library(here)
+
 knitr::opts_chunk$set(echo = FALSE)
 
 # Learn more about creating blogs with Distill at:
@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 
 ```{r, echo = FALSE, fig.align = 'center', out.width = '50%', results = 'markup'} 
-knitr::include_graphics("profilepic.PNG")
+#knitr::include_graphics("profilepic.PNG")
 ```
 Hi! My name is Jessica. I'm a senior at Amherst College studying statistics and psychology. I made this blog for fun in hopes of motivating myself to be a more active programmer and data scientist! I love R and #TidyTuesday. Besides statistics I enjoy finding new places to eat in the D.C/Maryland/Virginia area. 
 
