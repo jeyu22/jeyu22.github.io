@@ -2,7 +2,7 @@ name: "jessicablog"
 title: "Crouton Thoughts"
 description: |
   Food, statistics, and musings from a 20-year old college student.
-output_dir: "."
+output_dir: "docs"
 navbar:
   right:
     - text: "Home"
