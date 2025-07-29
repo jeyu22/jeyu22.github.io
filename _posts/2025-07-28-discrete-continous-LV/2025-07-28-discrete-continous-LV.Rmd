@@ -1,0 +1,19 @@
+---
+title: "Discrete vs Continous LV"
+description: |
+  "All models are wrong, but some are useful" - George Box
+author:
+  - name: Jessica
+categories:
+  - research
+date: 07-28-2025
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Testing
