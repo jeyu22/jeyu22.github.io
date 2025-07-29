@@ -17,10 +17,16 @@ knitr::opts_chunk$set(echo = F, message = F, warning = F)
 ```
 
 ### Introduction
+Latent variables are constructs (things/concepts) that we can not observe directly, but we believe influence our observed data that we collect. Depression is a latent variable that we cannot assess directly, but we hope that a questionnaire like PHQ-9 or Beck's Depression Inventory are proxies that are able to effectively capture depression. The items that we use are assumed to have measurement error because we cannot 100% perfectly capture the latent variable (otherwise it wouldn't be latent anymore..).
+
+Because we can't directly see the latent variable, there are different forms that it can take on. Depending on the theorized form of the latent variable, researchers will typically work with a subset of models in hopes of distinguishing individuals on this latent variable. The latent variable can be thought of as continuous, taking on a quantity that can be used to rank order and quantitatively compare individuals against one another. Factor analysis or Item Response Theory (IRT) are models that assume the latent variable is continuous, and both aim to describe the underlying structure of a set of observed variables given the latent variable. 
+
+On the other hand, discrete latent variable models like Latent Class Analysis (LCA) or Latent Profile Analysis (LPA) assume that individuals are divided into discrete subgroups based on the latent variable, with qualitative differences between groups rather than quantitative. We wouldn't say that individuals in one group score higher on the latent variable compared to another. Latent class analysis has been used in PTSD, depression, and eating disorder research to uncover groups where individuals exhbit different patterns of behavior from one another, but are not theorized to be less or more severe than other groups. 
+
+Methods that assume a discrete latent variable or a continuous latent variable can both be used to investigate heterogeneity in a sample and to characterize individuals. The question I've been grappling with is, how do you know which type of model to use? There is no test or method to determine whether your latent variable is discrete or continuous. Rather, the form of the latent variable is assumed from theory or previous research, and the choice of model will follow. While most researchers just conduct analysis assuming one framework, I'm curious to see what I can learn if I use both continous and discrete latent variable methods on the same dataset. What kind of conclusions can I make, and do conclusions from continuous vs discrete latent variable models contradict or overlap with one another?
 
 
-
-The dataset that I will be using to carry out my latent variable investigation is the Chinese Longitudinal Healthy Longevity Survey, a national study that assesses quality of life and health status of adults 65 years and older across 22 provinces in China. The goal of the study is to evaluate which biological, social, and environmental factors contribute to longevity and successful aging, and currently has 9 waves spanning from 1998 to 2021. I am interested in indicators related to functional anility. There are 6 items related to ADL: bathing, dressing, toilet, transfer, continence, and feeding. Additionally, there are 8 IADL items: visiting neighbors, shopping, cooking, doing laundry, walking 1km, lift a 5kg weight, crouching/standing, and taking public transportation. For these 14 items participants can respond as either being able to complete the activity independently, able to complete with assistance, or unable to complete. For the purposes of the analysis, ADL and IADL items will be dichotomized so that those who require any assistance will be grouped into one category. I will be using data from the 2005 wave of the study, and for the sake of analysis I will only include elders who have complete data on all of the ADL/IADL items, for a total sample size of 2,637. 
+The dataset that I will be using to carry out my latent variable investigation is the [Chinese Longitudinal Healthy Longevity Survey](https://www.icpsr.umich.edu/web/NACDA/series/487), a national study that assesses quality of life and health status of adults 65 years and older across 22 provinces in China. The goal of the study is to evaluate which biological, social, and environmental factors contribute to longevity and successful aging, and currently has 9 waves spanning from 1998 to 2021. I am interested in indicators related to functional anility. There are 6 items related to ADL: bathing, dressing, toilet, transfer, continence, and feeding. Additionally, there are 8 IADL items: visiting neighbors, shopping, cooking, doing laundry, walking 1km, lift a 5kg weight, crouching/standing, and taking public transportation. For these 14 items participants can respond as either being able to complete the activity independently, able to complete with assistance, or unable to complete. For the purposes of the analysis, ADL and IADL items will be dichotomized so that those who require any assistance will be grouped into one category. I will be using data from the 2005 wave of the study, and for the sake of analysis I will only include elders who have complete data on all of the ADL/IADL items, for a total sample size of 2,637. 
 
 
 ### Exploratory Factor Analysis (EFA)
@@ -31,24 +37,6 @@ dt <- df[,5:18]
 library(psych)
 ```
 
-```{r}
-
-
-
-
-
-
-
-# do scree plot? # does parallel analysis work for tetrachoric correlations? 
-
-df$scores <- f1$scores
-
-anova(lm(scores ~ RESIDENC, data = df))
-
-t.test(scores ~ A1,data = df)
-
-hist(df$scores)
-```
 
 The goal of EFA is to find the underlying factor structure that explains the correlation between observed items in a dataset. The factor loadings give information about the strength of the relationship between the factor and the item. Based on these factor loadings we can estimate individuals' factor scores, tell us where they fall along the latent variable continuum. The factor scores can be used in regression or other methods compare various groups on this latent trait.
 
