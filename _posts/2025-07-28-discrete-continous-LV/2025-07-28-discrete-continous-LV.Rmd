@@ -1,5 +1,5 @@
 ---
-title: "Discrete vs Continous LV"
+title: "Discrete vs Continous Latent Variables"
 description: |
   "All models are wrong, but some are useful" - George Box
 author:
@@ -13,7 +13,159 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = F, message = F, warning = F)
 ```
 
-## Testing
+### Introduction
+
+
+
+The dataset that I will be using to carry out my latent variable investigation is the Chinese Longitudinal Healthy Longevity Survey, a national study that assesses quality of life and health status of adults 65 years and older across 22 provinces in China. The goal of the study is to evaluate which biological, social, and environmental factors contribute to longevity and successful aging, and currently has 9 waves spanning from 1998 to 2021. I am interested in indicators related to functional anility. There are 6 items related to ADL: bathing, dressing, toilet, transfer, continence, and feeding. Additionally, there are 8 IADL items: visiting neighbors, shopping, cooking, doing laundry, walking 1km, lift a 5kg weight, crouching/standing, and taking public transportation. For these 14 items participants can respond as either being able to complete the activity independently, able to complete with assistance, or unable to complete. For the purposes of the analysis, ADL and IADL items will be dichotomized so that those who require any assistance will be grouped into one category. I will be using data from the 2005 wave of the study, and for the sake of analysis I will only include elders who have complete data on all of the ADL/IADL items, for a total sample size of 2,637. 
+
+
+### Exploratory Factor Analysis (EFA)
+
+```{r}
+df <- readRDS("adl.dataset.05-14.rds")
+dt <- df[,5:18]
+library(psych)
+```
+
+```{r}
+
+
+
+
+
+
+
+# do scree plot? # does parallel analysis work for tetrachoric correlations? 
+
+df$scores <- f1$scores
+
+anova(lm(scores ~ RESIDENC, data = df))
+
+t.test(scores ~ A1,data = df)
+
+hist(df$scores)
+```
+
+The goal of EFA is to find the underlying factor structure that explains the correlation between observed items in a dataset. The factor loadings give information about the strength of the relationship between the factor and the item. Based on these factor loadings we can estimate individuals' factor scores, tell us where they fall along the latent variable continuum. The factor scores can be used in regression or other methods compare various groups on this latent trait.
+
+To begin, we must construct a correlation matrix of the items in our dataset. Because these items are all dichotomous, a tetrachoric correlation needs to be estimated before doing EFA. It estimates the Pearson correlation assuming that the binary items are actually coarse approximations of normally distributed latent variable. 
+
+```{r}
+rr <- tetrachoric(dt) # smoothing was done..
+rr
+```
+
+After checking that the ADL/IADL were well correlated with one another, we used common factor analysis with weighted least squares estimation (due to prescence of categorical items). In order to determine the number of factors to estimate I used parallel analysis, which simulates a random dataset with the same number of variables as the existing dataset and extracts eigenvalues. The number of eigenvalues of the existing dataset that are larger than the eigenvalues extracted from the simulated dataset is the number of factors to be estimated. 
+
+```{r}
+print(fa.parallel(rr$rho, fa = "fa", n.obs = nrow(dt)))
+```
+Based on parallel analysis I fit a EFA model with 5 factors, along with oblim rotation, a method that allows factors to be correlated with one another and loadings with a more ideal structure. By ideal structure, I mean items that have high factor loadings on only one factor and low loadings on other, allowing for easier interpretation of the factors. For example, say that I fit 2 factors to my set of 14 ADL/IADL items. Perhaps all of my ADL items (feeding, dressing, continence, etc) have high factor loadings on factor 1 and small factor loadings on factor 2. Additionally, my IADL items do the opposite: they have high factor loadings on factor 2 rather than factor 1. This would make interpretation of the factors easier, as we could say that factor 1 represents basic or essential functioning while factor 2 represents more advanced physical functioning. If the continence item had a high factor loading on both factor 1 and 2, it would be less clear on how we would interpret and distinguish these two factors.
+
+```{r}
+f <- fa(rr$rho, nfactors = 5, fm = "wls", n.obs = nrow(dt), rotate = "oblimin")
+
+print(f$loadings)
+```
+
+While the results from parallel analysis suggest 5 factors, looking at the loadings and proportion of variance explained tells a different story. Factors 2-5 do not have any items with high factor loadings, and the amount of variance among the items that they explain is incredibly low compared to factor 1. Based on these results I decided to restimate the model with only 1 factor instead of 5. 
+
+```{r}
+f1 <- fa(dt,cor = "tet", nfactors = 1, fm = "wls", n.obs = nrow(dt), rotate = "oblimin", scores = "regression")
+print(f1$loadings)
+```
+
+The results from an EFA model with only one factor estimated show that all 14 ADL/IADL items load onto a single factor. This supports one theory that ADL and IADL items are unidimensional based on this dataset. 
+
+
+### Item Response Theory (IRT)
+
+```{r}
+library(mirt)
+
+mod <- mirt(dt, 1, itemtype = "2PL")
+```
+
+The goal of IRT is to model participants' probability of responding to a set of items as a function of a hypothesized latent trait. Similar to EFA, we are able to estimate each participant's latent trait value along a continum and use that value for further comparison and analysis. A core characteristic of IRT is that the model also estimates item parameters that describe the item regardless of the sample used. The parameters depend on the specific IRT model chosen, but could include item difficulty, item discrimination, and guessing parameters. Item difficulty refers to the latent trait needed to have a 50% chance of answering the item correctly (or in non-education settings, the probability of endorsing the item). Items that require a higher latent trait value in order to have that 50% chance have higher difficulty. Item discrimination is a quantity that refers to how well the item differentiates people with similar latent trait values. It can be thought of as a slope. The steeper the slope is, or the larger the item discrimination value is, there's a higher chance of endorsing the item with every small increment of the latent trait. Guessing parameters are more common in education settings where students may have a chance of randomly selecting the correct answer (like in multiple choice tests) rather than actually being proficient in the latent trait, so this parameter accounts for that possibility.
+
+IRT is an incredibly useful tool to not only assess the individuals in the sample, but to learn about the characteristics and quality of the items. It is desirable to have items that range in difficulty and have high discrimination so that the survey or assessment overall can assess people with high, low, and inbetween values on the latent continum. This is random but there's a quote in a fundamental IRT book that I really like "Researchers should spend more time investigating their scales than investigating with their scales." Using IRT models to evaluate measures is super important because establishing validity is absolutely essential before interpreting results. Oftentimes researchers are eager to use their tools right away without stopping to check if their tools are sharp enough!
+
+Because we have some earlier knowledge from fitting the EFA model that these set of ADL/IADL items may be unidimensional, we will fit an IRT model that assumes unidimensionality. There is a 1PL model which only estimates difficulty parameters, which is often the first model that is fit. After fitting the 1PL model I fit a 2PL model which also estimates discrimination parameters. Since this 2PL model was a significantly better fit to the data, I will only discuss the results of the 2PL model. Overall, the fit of the 2PL on this set of 14 ADL/IADL items was generally satisfactory after evaluating some fit statistics. The Root Mean Squared Error of Approximation (RMSEA) was .04, which is below the .05 threshold of adequate fit commonly used in research. In addition, the Comparative Fit Index (CFI) was .99, above the well-known criteria of .95. These fit statistics never guarantee fit or that the best model is chosen, but provide evidence to support its continued use and interpretation of its parameters. 
+
+
+```{r}
+coef(mod, IRTpars = TRUE, simplify = TRUE)$items # ADD DESCRIPTIONS FOR EACH OF THE ITEMS FOR THE TABLE
+```
+
+Table X above shows the discrimination (a) and difficulty (b) estimates for this dataset. The least difficult item is continence, whether one is able to use the restroom without assistance. One does not need to be on the high end of this latent trait spectrum, in this case the latent trait being functional ability, in order to have a 50% chance of being able to independently do this item. This estimate tracks with general gerontology research which shows that loss of continence is usually the last functional limitation that occurs and usually signals severe health decline. Other low difficulty items are feeding and getting dressed. On the other hand, the most difficult items are being able to crouch and stand 3 times as well as taking public transportation. Individuals need to have higher functional ability in order to have a higher probability of being able to do this activity. 
+
+
+```{r}
+
+#plot(mod, type = "trace")   # ICCs
+plot(mod, type = "infotrace")  # IIFs
+```
+The figure above shows information curves for each of the 14 items. These information curves let us know how informative these items are at different values of the latent trait, represented by theta. The higher the peak, the more information this item provides for people who are at that theta level. Both the item discrimination and the item difficulty are used to construct these information curves, and one can see that different items provide information for different values of the latent trait. For example, E5 (continence) provides the most information for people who are low on functional ability. This makes sense intuitively if you think about the fact that people with higher functional ability are all able to use the bathroom independently, so this item is not able to distinguish people who are past a certain threshold of basic functional ability. On the other hand, E14 (using public transportation) provides the most information for people who have higher functional ability. People with low functional ability who struggle to use the bathroom or get dressed are all going to be not able to use public transportation, so this item is not very helpful at differentiating people with a lower range of functional ability. 
+
+
+
+```{r}
+itemfit(mod, fit_stats = "S_X2")  # Per-item fit
+```
+While the overall model of fit is adequate, it is also possible to run item-level fit statistics to identify items that are not performing as expected based on the model and that could be reviewed. Large S-$\chi^2$ values with significant values indicate items that deviate significantly from the 2PL model. In this example we have two poor-fitting items using a .05 threshold: Toileting and shopping independently. If one was using IRT for scale development and to add/remove items, it is recommended to review these item fit statistics and do further analysis to investigate whether these two items should be excluded or not. Since my focus here is not scale development I will not proceed with any further adjustments.  
+
+
+```{r}
+theta_scores <- fscores(mod, method = "EAP")
+hist(theta_scores, main = "Distribution of Latent Trait Scores")
+```
+Lastly, I want to turn our focus on the person parameters. Based on the estimated item parameter values, we can also estimate latent trait scores for each person in the dataset. The graph above shows the distribution of theta scores for this sample of older Chinese adults. Overall, most adults in the sample have relatively higher functional ability, while there are a smaller subset that vary in terms of severity of functional disability. The actual numerical value of the theta scores should not be interpreted, but can be used to compare comparisons within the sample. This distribution aligns with the sample characteristics, as these older adults have been sampled from the general population and excludes institutionalized older adults who may have severe functional limitations. 
+
+Overall, using IRT on this data shed some light about which items are informative for describing individuals that are located on different parts of the functional ability variable. While we obtain more information about our items compared to EFA, this is more of a secondary step after EFA rather than a competing model during step 1 of data exploration. In order to fit the 1PL and 2PL IRT models, the assumption of unidimensionality must be justified. Results from our EFA where we allowed for the possibility of multiple factors to explain the correlation of our items indicated that one factor was sufficient for explaining our data, so thus I decided to fit these IRT models. The distribution of latent trait scores from both EFA and the 2PL model were very similar. My analysis here stops short but a next step I could take is to use these latent trait scores as a predictor for some type of outcome. In the context of aging it could be a useful predictor of depression and mental wellbeing (although the direction of this model is kind of undetermined because mental wellbeing could also predict functional ability too..). I don't do gerontology research or have any strong hypotheses so I will just stop here and move on to the discrete variable case: latent class models!
+
+### Latent Class Analysis (LCA)
+
+```{r}
+library(tidyverse)
+m5 <- readRDS("m5.Rds")
+make_polca_graph <- function(sixclass_polca, typ = "adl", nitem = 10){
+  
+  rhos <-sixclass_polca$probs
+  
+  item_data <- imap_dfr(rhos, function(mat, idx) {
+    colnames(mat) <- c("Response_1", "Response_2")
+    as_tibble(mat) %>% 
+      mutate(class = sixclass_polca$P, 
+             item = idx) %>%
+      dplyr::select(-Response_1)
+    
+  })
+  if(typ == "sim"){
+    item_data$item <- factor(item_data$item, levels  = paste0("X", seq_len(nitem)))
+    item_data$class <- as.character(round(as.numeric(item_data$class),4))
+    gg_polca<-ggplot(data = item_data,aes(x = item, y = Response_2, fill = item)) + geom_bar(stat = "identity") + facet_wrap(~class) + theme(axis.text.x = element_text(angle = 90, hjust = 1))+ guides(fill = "none") + 
+       ggtitle("Results from EM Algorithm SIM") + theme_minimal()+ theme(axis.text.x = element_text(angle = 90, hjust = 1)) + ylab("ResponseProbability")
+    
+  }else{item_data$item <- factor(item_data$item, levels  = c("E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9", "E10", "E11", "E12", "E13", "E14"))
+  item_data$class <- as.character(round(as.numeric(item_data$class),4))
+  gg_polca<-ggplot(data = item_data,aes(x = item, y = Response_2, fill = item)) + geom_bar(stat = "identity") + facet_wrap(~class) + theme(axis.text.x = element_text(angle = 90, hjust = 1))+ guides(fill = "none") + 
+    scale_x_discrete(labels = c("Bath","Dress","Toilet","Transfer","Continence","Feeding","Neighbors","Shopping","MakeFood","WashClothes","Walk1km","Carry5kg","Crouch","PublicTransport")) + ggtitle("Results from EM Algorithm") + theme_minimal()+ theme(axis.text.x = element_text(angle = 90, hjust = 1)) + ylab("ResponseProbability")
+  }
+  
+  return(gg_polca)
+  
+}
+
+```
+
+```{r}
+make_polca_graph(m5)
+```
+
+
+
+### Conclusion
