@@ -1,7 +1,7 @@
 ---
 title: "Start values"
 description: |
-  Sometimes maybe less is more..
+  Opening a can of worms...
 author:
   - name: Jessica
 categories:
@@ -12,8 +12,19 @@ output:
     self_contained: false
 ---
 
-```{r}
+## Introduction
 
 
-```
-hello
+## Different Start Value Methods
+
+
+## What I did
+
+
+
+## Results
+
+
+
+
+
