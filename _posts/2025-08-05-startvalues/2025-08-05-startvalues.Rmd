@@ -11,7 +11,7 @@ output:
   distill::distill_article:
     self_contained: false
 ---
-```{r}
+```{r, include = F}
 knitr::opts_chunk$set(echo =F)
 library(kableExtra)
 library(tidyverse)
@@ -87,26 +87,51 @@ The graph above shows the start value spread for all the parameters using random
 ```{r, echo = FALSE, fig.align = 'center', out.width = '320%', results = 'markup'} 
 knitr::include_graphics("randompr_gamma.png")
 ```
-This graph also uses random probabilities (sampled from an uniform distribution )
+This graph also uses random probabilities (sampled from an uniform distribution) but instead of the class prevalences being fixed, they are sampled from a dirichlet distribution. I chose to sample from dirichlet because the class prevalences need to add up to 1, so sampling from a dirichlet distribution can account for that. You can see that for parameters V1-V4, there is now a spread of probability values. The distribution of the item response probabilities is the same as above. 
 
 
 ```{r, echo = FALSE, fig.align = 'center', out.width = '320%', results = 'markup'} 
 knitr::include_graphics("LHS.png")
 ```
+The graph above shows the spread of parameter values for latin hypercube sampling. Latent class prevalences are also sampled from a dirichlet distribution. The distribution of item response probability start values looks visually different compared to the previous start value methods. There are more starting values closer to 0 and 1 compared to the previous methods, and it resembles more of a uniform distribution. 
 
 ```{r, echo = FALSE, fig.align = 'center', out.width = '320%', results = 'markup'} 
 knitr::include_graphics("randomassignment.png")
 ```
 
+The last method is random assignment. This spread of starting values is the least uniform. There is a high concentration of starting values around the .4-.5 range. There is virtually no starting values close to 0 or 1. This is a little concerning because this is the start value method I used for my master's work. I had no idea it would be this concentrated in the middle!
+
+Let us not panic yet...while the distribution of the start values may be different, let's see how they impact the results. Turns out, all 4 methods found the same maximum LL value of -2658.298. If you are a regular researcher, that means that regardless of what start value method you used, you'll reach the same solution. That's good. Since I'm a methods researcher, I care a little bit more than just if the same maximum solution is reached. Are they reached the same number of times? What about the solutions that didn't reach the maximum?
 
 ```{r}
 df <- data.frame(
   Description = c(
-    "% of iterations where both fail to converge",
-    "% of iterations where equal class probabilities fail but unequal doesnt",
-    "% of iterations where unequal class probabilities fail but equal doesnt"
+    "Latin Hypercube Sampling",
+    "Random Probabilities",
+    "Random Probabilities w/ Random Prevalences",
+    "Random Assignment"
   ),
-  Value = c(14, 19, 24)
+  Value = c(110, 112, 89,101)
+)
+
+colnames(df) <- c("Start Value Method","Frequency of Maximum LL Solution")
+
+df %>%
+kbl(caption = "Frequency of Maximum LL Solution Between Start Value Methods") %>%
+  kable_classic(full_width = F, html_font = "Cambria")
+```
+
+The table above shows the frequency of the maximum LL solution for the various start value methods. While they are reached at relatively similar rates (remember that this is out of 1,000 iterations), there are slight differences. The random probabilities with random prevalences method results in the least amount of iterations reaching the maximum. 
+
+```{r}
+df <- data.frame(
+  Description = c(
+    "Latin Hypercube Sampling",
+    "Random Probabilities",
+    "Random Probabilities w/ Random Prevalences",
+    "Random Assignment"
+  ),
+  Value = c(63, 34, 100,16)
 )
 
 colnames(df) <- c("Start Value Method","Number of Local Solutions Found")
@@ -115,15 +140,15 @@ df %>%
 kbl(caption = "Comparing Local Solutions Found Between Start Value Methods") %>%
   kable_classic(full_width = F, html_font = "Cambria")
 ```
-
-
+Lastly, I want to take a look at the number of local solutions found. This has more variation compared to the frequency of maximum LL solutions. Random Probabilities w/ random prevalences converged to the most local solutions at 100, while random assignment only found 16 local solution. This is quite a big difference. Perhaps having random prevalences, with the possibility of really big or really small classes, allows for exploration of different parts of the parameter space that the random assignment method cannot do. My analysis will end here for today but there is promising future work to be done. Now that we observe differences in the number of local solutions, it would be interesting to look at the parameter estimates of these local solutions, or use the number of local solutions as a predictor for bias or class enumeration (deciding the optimal number of latent classes that fit the data).
 
 ## Conclusion
 
-As the sub-title of my article suggests, I really feel like I opened a can of worms in terms of my own research. My master's thesis work is a simulation study comparing convergence behavior between EM and another estimation algorithm called Newton Raphson, and one metric that I use to compare the two are the frequency of local solutions each algorithm finds given the same set of starting values. Well in that work I arbitrarily chose random assignment as the start value generation method without giving it much thought. However, the results here suggest that the start value generation method chosen influences the number of local solutions...so my simulation 
+As the sub-title of my article suggests, I really feel like I opened a can of worms in terms of my own research. My master's thesis work is a simulation study comparing convergence behavior between EM and another estimation algorithm called Newton Raphson, and one metric that I use to compare the two are the frequency of local solutions each algorithm finds given the same set of starting values. Well in that work I arbitrarily chose random assignment as the start value generation method without giving it much thought. However, the results here suggest that the start value generation method chosen influences the number of local solutions...so my simulation results are only relevant in the context of the start value method. In my simulation study I did not find the number of local solutions to be a significant predictor of bias (of the final solution), given other simulation factors, but these results might change if I used a different start value method. The method I chose yielded the least amount of local solutions (at least based on this one dataset), while other methods yielded many more! I need to think about the potential implications of this. 
 
+This is super interesting to me and now I want to run my simulation results again but with a different start value method... but where is the time?! If there's one thing to take away from this, is that take start value generation seriously!! Whatever software you're using to estimate models like latent class models, do some digging to see what method they use. 
 
-
+Thanks for reading. Take care.
 
 
 

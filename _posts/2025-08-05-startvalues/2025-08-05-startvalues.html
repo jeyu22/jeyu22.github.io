@@ -1552,13 +1552,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>knitr</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/knitr/man/opts_chunk.html'>opts_chunk</a></span><span class='op'>$</span><span class='fu'>set</span><span class='op'>(</span>echo <span class='op'>=</span><span class='cn'>F</span><span class='op'>)</span></span>
-<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://haozhu233.github.io/kableExtra/'>kableExtra</a></span><span class='op'>)</span></span>
-<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span></code></pre>
-</div>
-</div>
 <h2 id="introduction">Introduction</h2>
 <p>Parameter estimation is the process in which we obtain estimates for parameters that are part of our model of interest, which we then use to describe our population. Linear regression, structural equation modeling, and even just the mean, are examples where there are parameters that must be estimated. My area of research focuses on latent class models, which aim to identify subgroups in a population, where each of the groups differ on some specific latent variable. Each group (or class) has a set of parameters that describe it and differentiate it from another class. These parameters are item response probabilities and latent class prevalences. Item response probabilities tell us: what is the probability that an individual in class X will choose response option Y for item Z? Class prevalence tells us what proportion of the entire sample will be members of class X, as individuals can only be members of one class. We don’t know what the true item response probabilities or class prevalences are, so we must estimate them using the observed data we do have, which are individual’s responses to items.
 Latent class models are part of the broader family of mixture models, where individuals can be part of a group that has its own characteristics and parameters. These models are notoriously difficult to estimate. While there is more than one framework/perspective to estimation, what I’m talking about today pertains to Maximum Likelihood Estimation (MLE). With MLE, the goal of estimation is to pick values that maximize the probability of observing our data within the context of our model. Maximizing the probability involves choosing parameter values that maximize some function related to our model. In this case our desired function is <span class="math display">\[\begin{equation}
@@ -1610,17 +1603,72 @@ L(\boldsymbol{\gamma}, \boldsymbol{\rho} \mid \mathbf{y})
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="randompr_gamma.png" width="320%" style="display: block; margin: auto;" /></p>
 </div>
-<p>This graph also uses random probabilities (sampled from an uniform distribution )</p>
+<p>This graph also uses random probabilities (sampled from an uniform distribution) but instead of the class prevalences being fixed, they are sampled from a dirichlet distribution. I chose to sample from dirichlet because the class prevalences need to add up to 1, so sampling from a dirichlet distribution can account for that. You can see that for parameters V1-V4, there is now a spread of probability values. The distribution of the item response probabilities is the same as above.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="LHS.png" width="320%" style="display: block; margin: auto;" /></p>
 </div>
+<p>The graph above shows the spread of parameter values for latin hypercube sampling. Latent class prevalences are also sampled from a dirichlet distribution. The distribution of item response probability start values looks visually different compared to the previous start value methods. There are more starting values closer to 0 and 1 compared to the previous methods, and it resembles more of a uniform distribution.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="randomassignment.png" width="320%" style="display: block; margin: auto;" /></p>
 </div>
+<p>The last method is random assignment. This spread of starting values is the least uniform. There is a high concentration of starting values around the .4-.5 range. There is virtually no starting values close to 0 or 1. This is a little concerning because this is the start value method I used for my master’s work. I had no idea it would be this concentrated in the middle!</p>
+<p>Let us not panic yet…while the distribution of the start values may be different, let’s see how they impact the results. Turns out, all 4 methods found the same maximum LL value of -2658.298. If you are a regular researcher, that means that regardless of what start value method you used, you’ll reach the same solution. That’s good. Since I’m a methods researcher, I care a little bit more than just if the same maximum solution is reached. Are they reached the same number of times? What about the solutions that didn’t reach the maximum?</p>
 <div class="layout-chunk" data-layout="l-body">
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-8">Table 1: </span>Comparing Local Solutions Found Between Start Value Methods
+<span id="tab:unnamed-chunk-8">Table 1: </span>Frequency of Maximum LL Solution Between Start Value Methods
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Start Value Method
+</th>
+<th style="text-align:right;">
+Frequency of Maximum LL Solution
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Latin Hypercube Sampling
+</td>
+<td style="text-align:right;">
+110
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Random Probabilities
+</td>
+<td style="text-align:right;">
+112
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Random Probabilities w/ Random Prevalences
+</td>
+<td style="text-align:right;">
+89
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Random Assignment
+</td>
+<td style="text-align:right;">
+101
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The table above shows the frequency of the maximum LL solution for the various start value methods. While they are reached at relatively similar rates (remember that this is out of 1,000 iterations), there are slight differences. The random probabilities with random prevalences method results in the least amount of iterations reaching the maximum.</p>
+<div class="layout-chunk" data-layout="l-body">
+<table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-9">Table 2: </span>Comparing Local Solutions Found Between Start Value Methods
 </caption>
 <thead>
 <tr>
@@ -1635,33 +1683,44 @@ Number of Local Solutions Found
 <tbody>
 <tr>
 <td style="text-align:left;">
-% of iterations where both fail to converge
+Latin Hypercube Sampling
 </td>
 <td style="text-align:right;">
-14
+63
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-% of iterations where equal class probabilities fail but unequal doesnt
+Random Probabilities
 </td>
 <td style="text-align:right;">
-19
+34
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-% of iterations where unequal class probabilities fail but equal doesnt
+Random Probabilities w/ Random Prevalences
 </td>
 <td style="text-align:right;">
-24
+100
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Random Assignment
+</td>
+<td style="text-align:right;">
+16
 </td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>Lastly, I want to take a look at the number of local solutions found. This has more variation compared to the frequency of maximum LL solutions. Random Probabilities w/ random prevalences converged to the most local solutions at 100, while random assignment only found 16 local solution. This is quite a big difference. Perhaps having random prevalences, with the possibility of really big or really small classes, allows for exploration of different parts of the parameter space that the random assignment method cannot do. My analysis will end here for today but there is promising future work to be done. Now that we observe differences in the number of local solutions, it would be interesting to look at the parameter estimates of these local solutions, or use the number of local solutions as a predictor for bias or class enumeration (deciding the optimal number of latent classes that fit the data).</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>As the sub-title of my article suggests, I really feel like I opened a can of worms in terms of my own research. My master’s thesis work is a simulation study comparing convergence behavior between EM and another estimation algorithm called Newton Raphson, and one metric that I use to compare the two are the frequency of local solutions each algorithm finds given the same set of starting values. Well in that work I arbitrarily chose random assignment as the start value generation method without giving it much thought. However, the results here suggest that the start value generation method chosen influences the number of local solutions…so my simulation</p>
+<p>As the sub-title of my article suggests, I really feel like I opened a can of worms in terms of my own research. My master’s thesis work is a simulation study comparing convergence behavior between EM and another estimation algorithm called Newton Raphson, and one metric that I use to compare the two are the frequency of local solutions each algorithm finds given the same set of starting values. Well in that work I arbitrarily chose random assignment as the start value generation method without giving it much thought. However, the results here suggest that the start value generation method chosen influences the number of local solutions…so my simulation results are only relevant in the context of the start value method. In my simulation study I did not find the number of local solutions to be a significant predictor of bias (of the final solution), given other simulation factors, but these results might change if I used a different start value method. The method I chose yielded the least amount of local solutions (at least based on this one dataset), while other methods yielded many more! I need to think about the potential implications of this.</p>
+<p>This is super interesting to me and now I want to run my simulation results again but with a different start value method… but where is the time?! If there’s one thing to take away from this, is that take start value generation seriously!! Whatever software you’re using to estimate models like latent class models, do some digging to see what method they use.</p>
+<p>Thanks for reading. Take care.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
