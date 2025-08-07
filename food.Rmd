@@ -14,7 +14,11 @@ library(leaflet)
 m <- leaflet() %>%
   addTiles() %>%  # Add default OpenStreetMap map tiles
   addMarkers(lng=-122.3415891644071, lat=47.65057489209585, popup="<b>Many Bennies</b><br>New Zealand Ice Cream <br> w/ Fresh Fruit") %>%
-  addMarkers(lng =-122.29488235022143, lat = 47.668808874518604, popup = "<b>Pancita</b><br>Upscale Mexican <br> w/ the best Choco Tamal")
+  addMarkers(lng =-122.29488235022143, lat = 47.668808874518604, popup = "<b>Pancita</b><br>Upscale Mexican <br> w/ the best Choco Tamal") %>%
+  addMarkers(lng =-122.31641304011974, lat = 47.599127672641785, popup = "<b>Huong Binh Restaurant</b><br>Best Vietnamese food in Seattle <br> sketchy parking! be careful") %>%
+addMarkers(lng =-122.33820750434025, lat = 47.66188964311319, popup = "<b>Minato</b><br>High quality raw fish + donburi <br> Take-out Only")
+
+
 m  
 
 ```
