@@ -12,24 +12,147 @@ output:
     self_contained: false
 ---
 
+```{r, echo = F}
+knitr::opts_chunk$set(echo =F, message = F, warning = F)
+library(kableExtra)
+library(tidyverse)
+df <- readRDS("./all_simulations0709.Rds")
+```
+
 ### Introduction
+I recently submitted my master's thesis! Yay! Today's topic highlights one portion of my master's thesis where I hope to diver deeper and make useful contributions. In my thesis I did a very initial exploration of the connection between presence of local solutions and parameter estimate quality. I will share what I did, some potential issues with my method, my next steps, and current roadblocks I have encountered. Let me be absolutely clear and say that this is no means a guide or a tutorial of any kind. This is all extremely exploratory and I don't want anyone to start using local solutions to draw any conclusions (yet).
 
+When estimating latent class models under the maximum likelihood estimation (MLE) framework, we aim to obtain parameters that maximize the probability of our observed data occurring. Observed data are the responses we collected from actual participants on a specific set of questions/items. There are different algorithms under MLE that we can use to get item response probabilites and latent class prevelances, the parameters of interest if we are fitting latent class models. It is well-known that estimating latent class models can lead to convergence to local solutions. Theoretically, algorithms like [Expectation-Maximization](https://en.wikipedia.org/wiki/Expectation%E2%80%93maximization_algorithm) guarantee convergence to a local maximum, meaning a maximum of a particular region of the parameter space but not across the entire parameter space. This means that given a set of starting values, the algorithm may converge to an inferior solution that we do not want to interpret or use as our final solution. The recommendation is that many different sets of starting values should be used, and the solution corresponding to the largest maximum likelihood out of all of those sets is assumed to be the global maximum of the parameter space (even though we aren't 100% sure this is true). Most researchers understand the importance of using many sets of starting values and examining the best solution. But what about the rest of the solutions that the algorithm converged to that were suboptimal? I call these local solutions, but they can go by many other names like local optima or modes. My impression is that researchers do not investigate or pay attention to these local solutions at all. One of the latent class model estimation packages in R, poLCA, will only show the solution and final likelihood of the iteration with the largest likelihood, even when you specify hundreds or thousands of repetitions. 
 
+What if we could use information like the number of local solutions or the proportion of iterations that converged to the "global" maximima for a given set of repetitions as a predictor for latent class quality? In simulation studies it is possible to vary item response probability values or class prevalence balance, but with empirical data we will never know what the true values of our parameters are. We will also never know the true number of classes! If we can harness information that we get as a by-product of our estimation process, maybe it can help give us more confidence in our solution, or warn us of potential estimation issues. Hence the sub-header of this article: one man's trash is another man's treasure. If my research uncovers some kind of link between local solutions and estimation quality, then we can encourage researchers to examine their output more closely and not just focus on the maximum likelihood solution. 
 
 
 ### Inspiration from Shireman et. al (2016)
+I am not the first person to think of this idea. In the Oxford Handbook of Quantitative Methods, [Masyn](https://academic.oup.com/edited-volume/41363/chapter/352588205) suggests that a poorly identified model will have a low level of maximum log likelihood solution replication and shows an example with a distribution of converged likelihood values. It is not clear to me what constitutes "low level" or "high level" of maximum likelihood solution replication. This lack of specificity might not be useful to researchers. 
 
+In a simulation study, [Shireman et. al (2016)](http://dx.doi.org/10.1080/00273171.2016.1160359) tried to establish a correlation between the number of local solutions, classification accuracy, and bias. They found that the proportion of local solutions was negatively correlated (-.5) with classification accuracy. They suggest that proportion of local solutions below .20 suggest "overall excellent solutions". I draw a lot of inspiration for my research from this paper but I do think there is room for further research! I personally find that classification accuracy is not as important if the parameters you recover do not resemble the true class structure! I think bias should be examined closely first before focusing on classification accuracy. I also think when using local solutions to predict outcomes, we should also include any knowledge about the dataset or the latent class model itself. If we know the number of items and the sample size, will *also* knowing the number of local solutions or proportion of iterations converging to the maximum give us more insight about the bias of our parameter estimates?
+
+### My data
+As I mentioned earlier, this line of research is just one portion of my master's thesis. My overall thesis aimed to compare the estimation behavior of Expectation-Maximization algorithm and Newton Raphson. I generated 8 different simulation conditions with 3 factors:
+- Sample size (400 vs 1,000)
+- Class prevalence balance (balanced vs unbalanced)
+- Measurement error/item response probabilities (low vs high measurement error)
+
+I kept the number of classes (4) and the number of items (10) fixed for simplicity, but I am aware that varying this is super important to having generalizable results.
+
+Measurement error refers to how far away item response probabilities are from 0 and 1. If an item response probability for a given class and item is .80, that means that there is a 20% chance that individuals in this class will have the other "incorrect" answer that is not characteristic of their class membership. This item could be interpreted as having low measurement error, compared to an item response probability of .60. In my simulation study, items in the high measurement error condition had probabilities .65/.35, while items in the low measurement error condition had probabilities .8/.2. 
+
+Class prevalence balance refers to how big classes are. Unbalanced means that a large proportion of individuals are members of one class, while balanced means that there is more of an even spread among all of the classes. Unbalanced class prevalences are harder to estimate because there is less information for the algorithm for the smaller classes.
+
+An example of the true parameters are shown below. This simulation condition has high measurement error and balanced latent class prevalences. 
+
+```{r}
+rho_table3 <- tribble(
+  ~TrueParameters,     ~Class1, ~Class2, ~Class3, ~Class4,
+  "Class Prevalence", 0.35,    0.27, 0.24, 0.14,
+  "Item 1",  0.65,    0.65,    0.35,    0.35,
+  "Item 2",  0.65,    0.65,    0.35,    0.35,
+  "Item 3",  0.65,    0.65,    0.35,    0.35,
+  "Item 4",  0.65,    0.65,    0.35,    0.35,
+  "Item 5",  0.65,    0.65,    0.35,    0.35,
+  "Item 6",  0.65,    0.65,    0.65,    0.35,
+  "Item 7",  0.65,    0.65,    0.65,    0.35,
+  "Item 8",  0.65,    0.65,    0.65,    0.35,
+  "Item 9",  0.65,    0.65,    0.65,    0.35,
+  "Item 10", 0.65,    0.65,    0.65,    0.35
+)
+kable(rho_table3 , caption = "True Parameters for Simulation 1/2",booktabs = T)
+```
+
+For each simulation condition I generated 6 datasets. I ran both Newton Raphson and Expectation Maximization using the same starting values (500 sets total). I collected a lot of information but for the purposes of this article I calculated the bias, number local solutions, and proportion of starting value sets that converged to the maximum likelihood solution. The number of local solutions and proportion of starting values that converged to the maximum are not directly inverses of each other, although they represent similar information. It is possible to have a small number of local solutions but also a low proportion of iterations converging to the maximum because many iterations are just converging to 1 or 2 other local solutions! For my thesis I used number of local solutions as a predictor of bias but here I will use proportion of iterations converging to the maximum. 
 
 
 ### Building a linear model
 
+Instead of just examining the correlation between the proportion of iterations converging to the maximum and bias, I fit a linear model accounting for sample size and algorithm used (since I used two on the same dataset). In my thesis I actually fit a multi-level model using simulation number as the random intercept since I have 6 datasets per condition so observations are not independent. I think using a multilevel structure makes sense to produce accurate standard errors, but conceptually I'm not so sure I needed to include simulation number because it contains information that applied researchers would not have with their empirical datasets. In my original thesis I found that after accounting for simulation condition (which itself contains information about measurement error, class prevalence, and sample size), the number of local solutions did not contribute signficantly into the prediction of bias. However, we wouldn't know the true measurement error of items or class prevalence with empirical datasets, so we downplay the contribution of the number of local solutions, which we can see! 
+
+```{r}
+temp2 <- df[,c("sim_number","dataset_id","prevalence","ss","bound","perc_NR","perc_EM","bias_NR","bias_EM")]
+
+df_long <- temp2 %>%
+  pivot_longer(
+    cols = c(perc_NR, perc_EM),
+    names_to = "algorithm",
+    values_to = "percMax"
+  ) %>%
+  mutate(algorithm = recode(algorithm,perc_EM= "EM", perc_NR = "NR"))
+
+
+df_long <- df_long %>%
+  pivot_longer(
+    cols = c(bias_EM, bias_NR),
+    names_to = "algorithm_bias",
+    values_to = "bias"
+  ) %>%
+  mutate(algorithm_bias = recode(algorithm_bias, bias_EM = "EM", bias_NR = "NR"))
+
+df_long <- df_long %>%
+  filter(algorithm == algorithm_bias)
+
+model <- lm(bias~  percMax + algorithm + factor(ss), data = df_long)
+summary(model)
+```
+The summary of the linear model is shown above. The proportion of iterations converging to maximum is a signficantly associated with bias, along with the sample size. An increase in the proportion is associated with a decrease in bias.
+
+
+```{r}
+effectsize::eta_squared(model)
+```
+
+Looking at the effect size of the linear model, the proportion of iterations converging to the maximum explains a lot of the variation in the bias compared to the algorithm and the sample size. This is interesting!
 
 ### Investigating specific cases
+However, I'm not entirely convinced the relationship between proportion of convergence to the maximum and bias is entirely there. I enjoy looking at maximum likelihood estimates of my different datasets and comparing them to the truth. In this dataset, 81% of the starting values converged to the maximum, whose parameters are displayed on the right. 
+
+```{r}
+rho_table1 <- tribble(
+  ~MaxSolution,     ~Class1, ~Class2, ~Class3, ~Class4,
+  "Class Prevalence", 0.24,    0.34,    0.32,    0.10,
+  "Item 1",           0.59,    0.56,    0.34,    0.56,
+  "Item 2",           0.65,    0.52,    0.27,    0.64,
+  "Item 3",           0.59,    0.74,    0.44,    0.48,
+  "Item 4",           0.65,    0.93,    0.13,    0.24,
+  "Item 5",           0.50,    0.53,    0.47,    0.55,
+  "Item 6",           1.00,    0.31,    0.44,    0.39,
+  "Item 7",           0.71,    0.47,    0.70,    0.14,
+  "Item 8",           0.68,    0.56,    0.54,    0.11,
+  "Item 9",           0.64,    0.45,    0.74,    0.11,
+  "Item 10",          0.82,    0.43,    0.62,    0.06
+)
+
+rho_table3 <- tribble(
+  ~TrueParameters,     ~Class1, ~Class2, ~Class3, ~Class4,
+  "Class Prevalence", 0.35,    0.27, 0.24, 0.14,
+  "Item 1",  0.65,    0.65,    0.35,    0.35,
+  "Item 2",  0.65,    0.65,    0.35,    0.35,
+  "Item 3",  0.65,    0.65,    0.35,    0.35,
+  "Item 4",  0.65,    0.65,    0.35,    0.35,
+  "Item 5",  0.65,    0.65,    0.35,    0.35,
+  "Item 6",  0.65,    0.65,    0.65,    0.35,
+  "Item 7",  0.65,    0.65,    0.65,    0.35,
+  "Item 8",  0.65,    0.65,    0.65,    0.35,
+  "Item 9",  0.65,    0.65,    0.65,    0.35,
+  "Item 10", 0.65,    0.65,    0.65,    0.35
+)
+kable(list(rho_table3,rho_table1) , caption = "Comparing the Max Solution to the True Solution",booktabs = T)
+```
+However, you can see how DIFFERENT it is compared to the true parameters! If you interpreted the maximum solution it would be completely different from the true class solutions. One cannot rely entirely on the proportion of convergence to the maximum. “Even if a thousand people say it, a wrong is still a wrong.”
 
 
 ### The world's largest caveat 
-- contigent on starting value generation
-- contigent on tolerance
+There is something I have to admit: the number of local solutions or proportion of convergence to the maximum is ENTIRELY DEPENDENT ON HOW YOU GENERATED START VALUES! How you decide to generate start values (random draw values from a uniform, randomly assign individuals to initial classes, k-means, etc.) will decide where the algorithm starts in the parameter space, and ultimately where it will converge. If you happen to choose a batch of really bad starting values, then you're likely to have way more local solutions than if somehow you knew where the global maximum was and chose a bunch of starting values close to that global maximum. In my thesis I chose a starting value method that appeared to not represent the parameter space very well, as my item response probabilities were always initialized to be near .50. Thus, all of my results, even the results from the linear model I described above, completely
+
+So does that mean all of this is worthless? No! Now I am super curious to redo this investigation but with a different start value generation method. Maybe there will be a clearer, or even different, relationship between where the algorithm converges to and the final solution! Not to mention, even the tolerance critera set for convergence for the algorithm impacts the number of local solutions, so that's another factor to consider.
 
 
 ### Conclusion
+I said it once and I'll say it again, this is very preliminary work, but I find it so interesting! I think it's an underrated area of research and I really hope I can walk away from all of this with a set of guidelines or suggestions for applied researchers. Instead of throwing away the garbage (non- maximum likelihood solutions), maybe we can turn it into treasure (more insights about our model)!!!
+
+Thanks for reading.
+
+
