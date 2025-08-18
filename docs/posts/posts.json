@@ -1,5 +1,24 @@
 [
   {
+    "path": "posts/2025-08-18-local-solutions/",
+    "title": "Can we use local solutions to predict quality of latent class models?",
+    "description": "One man's trash is another man's treasure",
+    "author": [
+      {
+        "name": "Jessica",
+        "url": {}
+      }
+    ],
+    "date": "2025-08-18",
+    "categories": [
+      "research"
+    ],
+    "contents": "\nIntroduction\nInspiration from Shireman et. al (2016)\nBuilding a linear model\nInvestigating specific cases\nThe world’s largest caveat\ncontigent on starting value generation\ncontigent on tolerance\nConclusion\n\n\n\n",
+    "preview": {},
+    "last_modified": "2025-08-18T12:19:50-07:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/2025-08-05-startvalues/",
     "title": "Start value generation methods and their impact on Latent Class Models",
     "description": "Opening a can of worms...",
