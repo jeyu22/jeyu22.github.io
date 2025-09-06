@@ -73,6 +73,7 @@ Both NR and EM were given the same sets of starting values for each dataset and 
 I will highlight 3 main results from my thesis.
 
 1. In most simulation conditions, NR and EM converged to the same maximum likelihood solution overall, although there were a few differences in the worst simulation condition (small sample size, high measurement error, and unbalanced class prevalences). 
+
 ```{r}
 rho_table3 <- tribble(
   ~TrueParameters,     ~Class1, ~Class2, ~Class3, ~Class4,
