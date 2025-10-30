@@ -1,0 +1,200 @@
+---
+title: "Another exploration of local solutions and bias "
+description: |
+  The quest continues
+author:
+  - name: Jessica
+categories:
+  - research
+date: 10-03-2025
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r}
+library(lmerTest)
+library(tidyverse)
+fin <- readRDS("fin.Rds")
+
+fin <- fin %>%
+  mutate(distance =  max_val - secondLL)
+
+fin <- fin %>%
+  mutate(distance = ifelse(distance < 0,0,distance))
+```
+
+# ARI vs Classification Accuracy
+
+CA and ARI are highly correlated when measurement error is low, but once measurement error is high ARI is a more conservative indicator. Based on the formulation of ARI this makes sense, as ARI accounts for the fact that individuals could be correctly classified due to chance. Thus, I will use ARI as the classification accuracy metric. 
+```{r}
+#cor(fin$m_ARI,fin$m_CA)
+ggplot(data = fin, aes(x = m_ARI, y = m_CA, color = me)) + geom_point()
+```
+
+# Relationship between local solutions, bias, and ARI
+
+Based on the pairs plot, we can identify a few trends between the 3 variables. Percentage of unique solutions and bias are positively correlated, and it appears that there is a ceiling value of around .25 for bias. 
+
+ARI is bimodal, and there doesn't seem to be a clear relationship between percentage of unique solutions and ARI for either mode. It's possible to have low uniq_percentage and perfect or or super low ARI. 
+
+```{r}
+pairs(fin[,c(3,9,15)])
+```
+
+ARI is bimodal ---split on extent of measurement error
+
+When measurement error is low: high ARI almost guarantees low bias.., but just because ARI is low doesn't mean that bias is going to be high...
+
+When measurement error is high: even if ARI is low, like in the .2 range ..its still possible for bias to be low..
+```{r}
+
+ggplot(data = fin, aes(x = m_ARI, y = bias, color = me))+ geom_point()
+
+#ggplot(data = fin, aes(x = m_ARI, y = bias, color = nitem))+ geom_point()
+```
+
+# Simulation factors predicting bias and ARI 
+
+Much like what I found during my master's thesis, measurement error explains most of the variation in bias. The number of classes also explains a lot too. 
+```{r}
+mod <- lmer(bias~ uniq + ss + me + prev + nclass + nitem + (1 | sim_number), data = fin)
+#summary(mod)
+#car::Anova(mod, type = 3) 
+effectsize::eta_squared(mod)
+```
+
+```{r}
+# using only things we could know a priori
+mod <- lmer(bias~ uniq + ss +nitem + (1 | sim_number), data = fin)
+summary(mod)
+car::Anova(mod, type = 3) 
+effectsize::eta_squared(mod)
+
+# is this useful? it's not like we know sim_number IRL
+mod2 <- lmer(bias~ uniq + ss +nitem + (1 +uniq | sim_number), data = fin)
+anova(mod,mod2)
+```
+
+
+
+```{r}
+mod <- lmer(m_ARI~ uniq + ss + me + prev + nclass + nitem + (1 | sim_number), data = fin)
+summary(mod)
+car::Anova(mod, type = 3) 
+effectsize::eta_squared(mod)
+```
+
+Are these bad rule of thumbs?
+
+At 10% unique solutions - meaning about 50 different likelihood values - you're more likely to have item parameters with high measurement error... high bias, poor classification... regardless of sample size and number of items
+
+Having a larger sample size increases the changes that you have items with high measurement error IF THE PERCENTAGE OF UNIQUE SOLUTIONS IS HIGH. 
+```{r}
+
+ ggplot(data = fin, aes(x = uniq_perc, y = bias, color = me)) + facet_wrap(~ nitem + ss)+ geom_point()
+ 
+ggplot(data = fin, aes(x = uniq_perc, y = m_ARI, color = me)) + facet_wrap(~ nitem + ss)+ geom_point()
+
+ggplot(data = fin, aes(x = uniq_perc, y = m_ARI, color = nclass)) + geom_point()
+```
+
+The correlation between percentage of unique solutions and bias is the strongest at .77 when 
+
+Compared to shireman et al who found 0 correlation between MSPE and proportion of unique solutions...... we have much higher! Shireman et al is a mixture model paper not a latent class one. 
+```{r}
+temp <- fin %>% filter(ss == "small",nitem == 7)
+cor(temp$bias,temp$uniq)
+
+temp <- fin %>% filter(ss == "large",nitem == 7)
+cor(temp$bias,temp$uniq)
+
+temp <- fin %>% filter(ss == "small",nitem == 10)
+cor(temp$bias,temp$uniq)
+
+temp <- fin %>% filter(ss == "large",nitem == 10)
+cor(temp$bias,temp$uniq)
+
+```
+
+```{r}
+mod1 <- lmer(bias~ max_n + ss  + me +  prev + nclass +nitem + (1 | factor(sim_number)), data = fin)
+summary(mod1)
+car::Anova(mod1, type = 3) 
+effectsize::eta_squared(mod1)
+
+```
+
+
+
+```{r}
+
+ggplot(data = fin, aes(x = uniq_perc, y = m_ARI, color = bias)) + facet_wrap(~ nitem + ss)+ geom_point()
+
+temp <- fin %>% filter(ss == "small",nitem == 7)
+cor(temp$m_ARI,temp$uniq_perc)
+
+temp <- fin %>% filter(ss == "large",nitem == 7)
+cor(temp$m_ARI,temp$uniq_perc)
+
+temp <- fin %>% filter(ss == "small",nitem == 10)
+cor(temp$m_ARI,temp$uniq_perc)
+
+temp <- fin %>% filter(ss == "large",nitem == 10)
+cor(temp$m_ARI,temp$uniq_perc)
+
+```
+
+
+```{r}
+
+
+
+temp <- fin %>% filter(ss == "small",nitem == 7)
+cor(temp$m_ARI,temp$bias)
+
+temp <- fin %>% filter(ss == "large",nitem == 7)
+cor(temp$m_ARI,temp$bias)
+
+temp <- fin %>% filter(ss == "small",nitem == 10)
+cor(temp$m_ARI,temp$bias)
+
+temp <- fin %>% filter(ss == "large",nitem == 10)
+cor(temp$m_ARI,temp$bias)
+
+```
+
+if more than 10% of iterations converge to unique... you're prob gonna have high bias
+BUT just because you have low unique_perc DOESNT automatically mean your solution is good
+```{r}
+
+ggplot(data = fin, aes(x = uniq_perc, y = bias, color = me)) + facet_wrap(~ nitem + ss)+ geom_point()
+ggplot(data = fin, aes(x = uniq_perc, y = bias, color = me))+ geom_point()
+
+```
+
+# second LL analysis
+
+
+relationship between distance to second LL and bias?
+
+Just because the distance is 0 or small doesn't suggest anything.. BUT if the distance of the second best LL is really big... probably a good sign
+```{r}
+ggplot(data = fin, aes(x = distance, y = bias, color = secondLL_n))+ geom_point()
+```
+
+Not sure what the point of this would be.
+```{r}
+mod1 <- lmer(distance~  ss  + me +  prev + nclass +nitem + (1 | sim_number), data = temp)
+summary(mod1)
+car::Anova(mod1, type = 3) 
+effectsize::eta_squared(mod1)
+
+```
+
+```{r}
+ggplot(data = fin, aes(x = distance, y = bias, color = me))+ facet_wrap(~ nitem + ss)+ geom_point()
+
+ggplot(data = fin, aes(x = secondLL_n, y = bias, color = me))+ facet_wrap(~ nitem + ss)+ geom_point()
+```
+
