@@ -1,5 +1,24 @@
 [
   {
+    "path": "posts/2025-10-29-generals/",
+    "title": "Brainstorming for generals exam",
+    "description": "The more I learn the less I know",
+    "author": [
+      {
+        "name": "Jessica",
+        "url": {}
+      }
+    ],
+    "date": "2025-10-29",
+    "categories": [
+      "research"
+    ],
+    "contents": "\n\n\n\n\n\n",
+    "preview": {},
+    "last_modified": "2025-10-29T18:43:58-07:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/2025-09-06-masters-thesis/",
     "title": "Comparison of Algorithms for Estimating Latent Class Models",
     "description": "My master's thesis!",
