@@ -12,7 +12,8 @@ output:
     self_contained: false
 ---
 
-```{r}
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo =F, message = F, warning = F)
 library(lmerTest)
 library(tidyverse)
 fin <- readRDS("fin.Rds")
@@ -24,29 +25,60 @@ fin <- fin %>%
   mutate(distance = ifelse(distance < 0,0,distance))
 ```
 
-# ARI vs Classification Accuracy
+## Introduction
 
-CA and ARI are highly correlated when measurement error is low, but once measurement error is high ARI is a more conservative indicator. Based on the formulation of ARI this makes sense, as ARI accounts for the fact that individuals could be correctly classified due to chance. Thus, I will use ARI as the classification accuracy metric. 
+The work of my master's thesis focused on estimation issues in latent class models. One area in particular that I started to explore was local solutions - solutions that an algorithm converges to when estimating a latent class model that don't have the largest maximum likelihood (LL) across all of the iterations. In practice we only examine and report the solution with the largest maximum LL solution, which makes sense because we are trying to find parameters that are the closest to describing the observed data we have. However, in these past few years I have taken an interest in taking a closer look at these local solutions. Can information about their frequency or where they converge to shed light on the quality of our latent class model solution? While there have been simulation studies that study the relationship between class size, true parameter values, class prevalence size, and quality metrics of latent class models like bias or classification accuracy, we don't know these variables in real life with empirical data. In my master's thesis I showed that local solutions increased with worse data conditions, and in those same undesirable conditions the second best LL solution was also very close (often by a LL distance of .001) to the maximum LL solution. From my work and work from [Shireman et al. (2016)](https://www.tandfonline.com/doi/full/10.1080/00273171.2016.1160359), there is weak evidence to suggest that local solutions can be informative..but I'm not satisfied! My simulation results are disaggregated by factors that we would only know in simulation research. I also only could only run 8 datasets per simulation condition because I was using Newton-Raphson as an estimation algorithm, and it was computationally intense. Thus, I wanted to continue expanding on this work..
+
+
+## Method
+In order to save time I only used the EM algorithm from R's poLCA package to run this mini simulation study, but I whole-heartedly believe that these results could change if I used a different estimation algorithm, or even a different starting generation method! One simulation study can't cover all possible cases, so that just means there is more to be done. 
+In this simulation I varied 5 factors that pertain to latent class models:
+- sample size (400 vs 1,000)
+- measurement error (low vs high)
+- class prevalence (balanced vs unbalanced)
+- number of classes (3 vs 5)
+- number of items (7 vs 10)
+
+High measurement error means that item response probability parameters in each class took on values of .65 or .35. These probabilities are consider high error because if people in a class are estimated to have a 65% chance of saying yes to a particular item, that means that people ALSO have a 35% chance of saying no to that item.. If you want to describe this class as a one where people "tend" to say yes to this particular item, you don't have a ton of confidence in saying that! On the other hand, the low measurement error involves item response probabilities of .8 and .2, which have less chance of responding in the "opposing" way. 
+
+Class prevalence balance refers to whether one class represents a majority of the sample or not. In the unbalanced class prevalence condition for 3 classes the largest class is 70% of the sample, while the largest class is 50% of the sample for the 5 class conditions. 
+
+These 5 factors cross to make 32 simulation conditions, and for each of these conditions I simulated 50 datasets. For each dataset I ran 500 iterations with a maximum iteration of 10,000. The information of interest I collected are:
+- Classification accuracy and Adjusted Rand Index (ARI)
+- Percentage of unique solutions: out of 500 iterations, how many are unique LL solutions?
+- Frequency of maximum LL solution
+- Bias
+- Second largest LL frequency and distance from maximum LL
+
+## Results 
+
+### ARI vs Classification Accuracy
+
+I want to first start off by comparing ARI and classification accuracy (CA). I first learned of ARI from the Shireman et. al (2016) paper so I was unsure of how it different from CA, which just summarizes the average of successful class assignment based on the largest class posterior probability. ARI is a little bit more complicated and accounts for the fact that individuals could have been correctly assigned due to random chance, so it is more conservative. I wanted to know which one I should use as the metric for classification. 
+
+The figure below plots the ARI and CA for each of the datasets in the simulation. Overall,  ARI is consistently a more conservative indicator, so I will use this metric moving forward. It is interesting to see the sharp distinction that measurement error creates. Data with high measurement error are much more likely to have more classification results. This makes sense since 
+
 ```{r}
 #cor(fin$m_ARI,fin$m_CA)
 ggplot(data = fin, aes(x = m_ARI, y = m_CA, color = me)) + geom_point()
 ```
 
-# Relationship between local solutions, bias, and ARI
+### Relationship between local solutions, bias, and ARI
 
-Based on the pairs plot, we can identify a few trends between the 3 variables. Percentage of unique solutions and bias are positively correlated, and it appears that there is a ceiling value of around .25 for bias. 
+Based on the pairs plot below, we can identify a few trends between the 3 variables. Percentage of unique solutions and bias are positively correlated, and it appears that there is a ceiling value of around .25 for bias. 
 
 ARI is bimodal, and there doesn't seem to be a clear relationship between percentage of unique solutions and ARI for either mode. It's possible to have low uniq_percentage and perfect or or super low ARI. 
 
 ```{r}
-pairs(fin[,c(3,9,15)])
+pairs(fin[,c(3,9,5)])
 ```
 
-ARI is bimodal ---split on extent of measurement error
+### More on ARI is bimodal ---split on extent of measurement error
 
 When measurement error is low: high ARI almost guarantees low bias.., but just because ARI is low doesn't mean that bias is going to be high...
 
 When measurement error is high: even if ARI is low, like in the .2 range ..its still possible for bias to be low..
+
 ```{r}
 
 ggplot(data = fin, aes(x = m_ARI, y = bias, color = me))+ geom_point()
@@ -54,9 +86,10 @@ ggplot(data = fin, aes(x = m_ARI, y = bias, color = me))+ geom_point()
 #ggplot(data = fin, aes(x = m_ARI, y = bias, color = nitem))+ geom_point()
 ```
 
-# Simulation factors predicting bias and ARI 
+### Simulation factors predicting bias and ARI 
 
 Much like what I found during my master's thesis, measurement error explains most of the variation in bias. The number of classes also explains a lot too. 
+
 ```{r}
 mod <- lmer(bias~ uniq + ss + me + prev + nclass + nitem + (1 | sim_number), data = fin)
 #summary(mod)
@@ -71,9 +104,6 @@ summary(mod)
 car::Anova(mod, type = 3) 
 effectsize::eta_squared(mod)
 
-# is this useful? it's not like we know sim_number IRL
-mod2 <- lmer(bias~ uniq + ss +nitem + (1 +uniq | sim_number), data = fin)
-anova(mod,mod2)
 ```
 
 
@@ -90,6 +120,7 @@ Are these bad rule of thumbs?
 At 10% unique solutions - meaning about 50 different likelihood values - you're more likely to have item parameters with high measurement error... high bias, poor classification... regardless of sample size and number of items
 
 Having a larger sample size increases the changes that you have items with high measurement error IF THE PERCENTAGE OF UNIQUE SOLUTIONS IS HIGH. 
+
 ```{r}
 
  ggplot(data = fin, aes(x = uniq_perc, y = bias, color = me)) + facet_wrap(~ nitem + ss)+ geom_point()
@@ -102,6 +133,7 @@ ggplot(data = fin, aes(x = uniq_perc, y = m_ARI, color = nclass)) + geom_point()
 The correlation between percentage of unique solutions and bias is the strongest at .77 when 
 
 Compared to shireman et al who found 0 correlation between MSPE and proportion of unique solutions...... we have much higher! Shireman et al is a mixture model paper not a latent class one. 
+
 ```{r}
 temp <- fin %>% filter(ss == "small",nitem == 7)
 cor(temp$bias,temp$uniq)
@@ -118,7 +150,7 @@ cor(temp$bias,temp$uniq)
 ```
 
 ```{r}
-mod1 <- lmer(bias~ max_n + ss  + me +  prev + nclass +nitem + (1 | factor(sim_number)), data = fin)
+mod1 <- lmer(bias~ max_n + ss  + me +  prev + nclass +nitem + (1 | sim_number), data = fin)
 summary(mod1)
 car::Anova(mod1, type = 3) 
 effectsize::eta_squared(mod1)
@@ -166,6 +198,7 @@ cor(temp$m_ARI,temp$bias)
 
 if more than 10% of iterations converge to unique... you're prob gonna have high bias
 BUT just because you have low unique_perc DOESNT automatically mean your solution is good
+
 ```{r}
 
 ggplot(data = fin, aes(x = uniq_perc, y = bias, color = me)) + facet_wrap(~ nitem + ss)+ geom_point()
@@ -179,22 +212,15 @@ ggplot(data = fin, aes(x = uniq_perc, y = bias, color = me))+ geom_point()
 relationship between distance to second LL and bias?
 
 Just because the distance is 0 or small doesn't suggest anything.. BUT if the distance of the second best LL is really big... probably a good sign
+
 ```{r}
 ggplot(data = fin, aes(x = distance, y = bias, color = secondLL_n))+ geom_point()
 ```
 
-Not sure what the point of this would be.
-```{r}
-mod1 <- lmer(distance~  ss  + me +  prev + nclass +nitem + (1 | sim_number), data = temp)
-summary(mod1)
-car::Anova(mod1, type = 3) 
-effectsize::eta_squared(mod1)
-
-```
 
 ```{r}
 ggplot(data = fin, aes(x = distance, y = bias, color = me))+ facet_wrap(~ nitem + ss)+ geom_point()
 
-ggplot(data = fin, aes(x = secondLL_n, y = bias, color = me))+ facet_wrap(~ nitem + ss)+ geom_point()
+ggplot(data = fin, aes(x = max_n, y = bias, color = me))+ facet_wrap(~ nitem + ss)+ geom_point()
 ```
 
