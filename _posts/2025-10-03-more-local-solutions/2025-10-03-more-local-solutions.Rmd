@@ -151,15 +151,12 @@ One last analysis related to percentage of local solutions that I wanted to do w
 
 ### Second LL analysis
 
-
-relationship between distance to second LL and bias?
-
-Just because the distance is 0 or small doesn't suggest anything.. BUT if the distance of the second best LL is really big... probably a good sign
+The last type of analysis I wanted to do is examining the relationship between the distance of the second LL and the max LL and bias. Based on the graph below, it appears that if the distance is 0 or small there isn't any distinct pattern of bias, BUT if the distance of the second best LL is really big, then it is likely that data conditions are adequate and the final solution is close to the true parameters. 
 
 ```{r}
 ggplot(data = fin, aes(x = distance, y = bias, color = secondLL_n))+ geom_point()
 ```
-
+I tried to see if there was a relationship between the frequency of the second LL solution and bias, but there doesn't seem to be any interesting pattern! Maybe the frequency of the second LL solution needs to be considered in the context of its actual LL value and how far away it is from the maximum LL, but I'll save that for another day. 
 
 ```{r}
 ggplot(data = fin, aes(x = secondLL_n, y = bias, color = me))+ facet_wrap(~ nitem + ss)+ geom_point()
