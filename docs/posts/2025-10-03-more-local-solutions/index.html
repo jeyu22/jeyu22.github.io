@@ -119,7 +119,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["2025-10-3-more-local-solutions_files/anchor-4.2.2/anchor.min.js","2025-10-3-more-local-solutions_files/bowser-1.9.3/bowser.min.js","2025-10-3-more-local-solutions_files/distill-2.2.21/template.v2.js","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-11-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-13-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-13-2.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-14-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-15-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-15-2.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-2-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-3-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-4-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-8-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-8-2.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-8-3.png","2025-10-3-more-local-solutions_files/header-attrs-2.29/header-attrs.js","2025-10-3-more-local-solutions_files/jquery-3.6.0/jquery-3.6.0.js","2025-10-3-more-local-solutions_files/jquery-3.6.0/jquery-3.6.0.min.js","2025-10-3-more-local-solutions_files/jquery-3.6.0/jquery-3.6.0.min.map","2025-10-3-more-local-solutions_files/popper-2.6.0/popper.min.js","2025-10-3-more-local-solutions_files/tippy-6.2.7/tippy-bundle.umd.min.js","2025-10-3-more-local-solutions_files/tippy-6.2.7/tippy-light-border.css","2025-10-3-more-local-solutions_files/tippy-6.2.7/tippy.css","2025-10-3-more-local-solutions_files/tippy-6.2.7/tippy.umd.min.js","2025-10-3-more-local-solutions_files/webcomponents-2.0.0/webcomponents.js","fin.Rds"]}
+  {"type":"character","attributes":{},"value":["2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-10-1.png","2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-11-1.png","2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-12-1.png","2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-2-1.png","2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-3-1.png","2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-4-1.png","2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-9-1.png","2025-10-3-more-local-solutions_files/anchor-4.2.2/anchor.min.js","2025-10-3-more-local-solutions_files/bowser-1.9.3/bowser.min.js","2025-10-3-more-local-solutions_files/distill-2.2.21/template.v2.js","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-11-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-13-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-13-2.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-14-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-15-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-15-2.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-2-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-3-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-4-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-8-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-8-2.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-8-3.png","2025-10-3-more-local-solutions_files/header-attrs-2.29/header-attrs.js","2025-10-3-more-local-solutions_files/jquery-3.6.0/jquery-3.6.0.js","2025-10-3-more-local-solutions_files/jquery-3.6.0/jquery-3.6.0.min.js","2025-10-3-more-local-solutions_files/jquery-3.6.0/jquery-3.6.0.min.map","2025-10-3-more-local-solutions_files/popper-2.6.0/popper.min.js","2025-10-3-more-local-solutions_files/tippy-6.2.7/tippy-bundle.umd.min.js","2025-10-3-more-local-solutions_files/tippy-6.2.7/tippy-light-border.css","2025-10-3-more-local-solutions_files/tippy-6.2.7/tippy.css","2025-10-3-more-local-solutions_files/tippy-6.2.7/tippy.umd.min.js","2025-10-3-more-local-solutions_files/webcomponents-2.0.0/webcomponents.js","2025-10-3-more-local-solutions.html","fin.Rds"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2170,33 +2170,53 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <div class="d-article">
 <h2 id="introduction">Introduction</h2>
-<p>The work of my master’s thesis focused on estimation issues in latent class models. One area in particular that I started to explore was local solutions - solutions that an algorithm converges to when estimating a latent class model that don’t have the largest maximum likelihood (LL) across all of the iterations. In practice we only examine and report the solution with the largest maximum LL solution, which makes sense because we are trying to find parameters that are the closest to describing the observed data we have. However, in these past few years I have taken an interest in taking a closer look at these local solutions. Can information about their frequency or where they converge to shed light on the quality of our latent class model solution? While there have been simulation studies that study the relationship between class size, true parameter values, class prevalence size, and quality metrics of latent class models like bias or classification accuracy, we don’t know these variables in real life with empirical data. In my master’s thesis I showed that local solutions increased with worse data conditions, and in those same undesirable conditions the second best LL solution was also very close (often by a LL distance of .001) to the maximum LL solution. From my work and work from <a href="https://www.tandfonline.com/doi/full/10.1080/00273171.2016.1160359">Shireman et al. (2016)</a>, there is weak evidence to suggest that local solutions can be informative..but I’m not satisfied! My simulation results rely</p>
+<p>The work of my master’s thesis focused on estimation issues in latent class models. One area in particular that I started to explore was local solutions - solutions that an algorithm converges to when estimating a latent class model that don’t have the largest maximum likelihood (LL) across all of the iterations. In practice we only examine and report the solution with the largest maximum LL solution, which makes sense because we are trying to find parameters that are the closest to describing the observed data we have. However, in these past few years I have taken an interest in taking a closer look at these local solutions. Can information about their frequency or where they converge to shed light on the quality of our latent class model solution? While there have been simulation studies that study the relationship between class size, true parameter values, class prevalence size, and quality metrics of latent class models like bias or classification accuracy, we don’t know these variables in real life with empirical data. In my master’s thesis I showed that local solutions increased with worse data conditions, and in those same undesirable conditions the second best LL solution was also very close (often by a LL distance of .001) to the maximum LL solution. From my work and work from <a href="https://www.tandfonline.com/doi/full/10.1080/00273171.2016.1160359">Shireman et al. (2016)</a>, there is weak evidence to suggest that local solutions can be informative..but I’m not satisfied! My simulation results are disaggregated by factors that we would only know in simulation research. I also only could only run 8 datasets per simulation condition because I was using Newton-Raphson as an estimation algorithm, and it was computationally intense. Thus, I wanted to continue expanding on this work..</p>
 <h2 id="method">Method</h2>
+<p>In order to save time I only used the EM algorithm from R’s poLCA package to run this mini simulation study, but I whole-heartedly believe that these results could change if I used a different estimation algorithm, or even a different starting generation method! One simulation study can’t cover all possible cases, so that just means there is more to be done.
+In this simulation I varied 5 factors that pertain to latent class models:
+- sample size (400 vs 1,000)
+- measurement error (low vs high)
+- class prevalence (balanced vs unbalanced)
+- number of classes (3 vs 5)
+- number of items (7 vs 10)</p>
+<p>High measurement error means that item response probability parameters in each class took on values of .65 or .35. These probabilities are consider high error because if people in a class are estimated to have a 65% chance of saying yes to a particular item, that means that people ALSO have a 35% chance of saying no to that item.. If you want to describe this class as a one where people “tend” to say yes to this particular item, you don’t have a ton of confidence in saying that! On the other hand, the low measurement error involves item response probabilities of .8 and .2, which have less chance of responding in the “opposing” way.</p>
+<p>Class prevalence balance refers to whether one class represents a majority of the sample or not. In the unbalanced class prevalence condition for 3 classes the largest class is 70% of the sample, while the largest class is 50% of the sample for the 5 class conditions.</p>
+<p>These 5 factors cross to make 32 simulation conditions, and for each of these conditions I simulated 50 datasets. For each dataset I ran 500 iterations with a maximum iteration of 10,000. The information of interest I collected are:
+- Classification accuracy and Adjusted Rand Index (ARI)
+- Percentage of unique solutions: out of 500 iterations, how many are unique LL solutions?
+- Frequency of maximum LL solution
+- Bias
+- Second largest LL frequency and distance from maximum LL</p>
+<h2 id="results">Results</h2>
 <h3 id="ari-vs-classification-accuracy">ARI vs Classification Accuracy</h3>
-<p>CA and ARI are highly correlated when measurement error is low, but once measurement error is high ARI is a more conservative indicator. Based on the formulation of ARI this makes sense, as ARI accounts for the fact that individuals could be correctly classified due to chance. Thus, I will use ARI as the classification accuracy metric.</p>
+<p>I want to first start off by comparing ARI and classification accuracy (CA). I first learned of ARI from the Shireman et. al (2016) paper so I was unsure of how it different from CA, which just summarizes the average of successful class assignment based on the largest class posterior probability. ARI is a little bit more complicated and accounts for the fact that individuals could have been correctly assigned due to random chance, so it is more conservative. I wanted to know which one I should use as the metric for classification.</p>
+<p>The figure below plots the ARI and CA for each of the datasets in the simulation. Overall, ARI is consistently a more conservative indicator, so I will use this metric moving forward. It is interesting to see the sharp distinction that measurement error creates. Data with high measurement error are much more likely to have more classification results. This makes sense since more measurement error means more variation in response patterns in a given class.</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
+<p><img src="2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
 </div>
 <h3 id="relationship-between-local-solutions-bias-and-ari">Relationship between local solutions, bias, and ARI</h3>
-<p>Based on the pairs plot, we can identify a few trends between the 3 variables. Percentage of unique solutions and bias are positively correlated, and it appears that there is a ceiling value of around .25 for bias.</p>
-<p>ARI is bimodal, and there doesn’t seem to be a clear relationship between percentage of unique solutions and ARI for either mode. It’s possible to have low uniq_percentage and perfect or or super low ARI.</p>
+<p>Based on the pairs plot below, we can identify a few trends between the 3 variables.<br />
+- Percentage of unique solutions and bias are positively correlated, and it appears that there is a ceiling value of around .25 for bias. This ceiling is probably specific to the number of parameters in this simulation study and not indicative of all latent class models.
+- Percentage of unique solutions and ARI don’t really have a linear relationship. Once the percentage of unique solutions pass 10%, ARI is guaranteed to be low. The reverse is not guaranteed to be true: if the percentage of unique solutions is less than 10%, there isn’t a clear pattern.
+- ARI is bimodal when looking at the relationship between ARI and bias, but within each mode bias tends to decrease as ARI increases.</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+<p><img src="2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
 </div>
-<p>ARI is bimodal —split on extent of measurement error</p>
-<p>When measurement error is low: high ARI almost guarantees low bias.., but just because ARI is low doesn’t mean that bias is going to be high…</p>
-<p>When measurement error is high: even if ARI is low, like in the .2 range ..its still possible for bias to be low..</p>
+<h3 id="more-on-ari-being-bimodal">More on ARI being bimodal</h3>
+<p>In order to understand how ARI is bimodal in the context of bias, I graphed their relationship while also separating by measurement error. When measurement error is low: high ARI (higher than .7) almost guarantees low bias, but just because ARI is low doesn’t mean that bias is necessarily going to be high…</p>
+<p>On the other hand, when measurement error is high: it is still possible for bias to be low even when ARI is objectively low (around .2), although it is not guaranteed.</p>
+<p>This distinct bimodal pattern can only be distinguished by measurement error, not by the number of items or classes, etc.</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
+<p><img src="2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
 </div>
 <h3 id="simulation-factors-predicting-bias-and-ari">Simulation factors predicting bias and ARI</h3>
-<p>Much like what I found during my master’s thesis, measurement error explains most of the variation in bias. The number of classes also explains a lot too.</p>
+<p>Much like what I did for my master’s thesis, I wanted to see whether these factors can adequately predict outcomes, and which factors explained most of the variation. Partial Eta-Squareds for the first mixed effects model are shown below. In this model the outcome is bias. Measurement error explains most of the variation in bias, along with the number of classes. The percentage of unique solutions explains little variation, but it is significant!</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre><code># Effect Size for ANOVA (Type III)
 
 Parameter | Eta2 (partial) |       95% CI
 -----------------------------------------
-uniq      |           0.03 | [0.01, 1.00]
+uniq_perc |           0.03 | [0.01, 1.00]
 ss        |           0.47 | [0.23, 1.00]
 me        |           0.90 | [0.83, 1.00]
 prev      |           0.51 | [0.27, 1.00]
@@ -2205,115 +2225,13 @@ nitem     |           0.48 | [0.24, 1.00]
 
 - One-sided CIs: upper bound fixed at [1.00].</code></pre>
 </div>
+<p>With ARI we can see that measurement error explains even more of the variation than in the model with bias. The percentage of unique solutions is not signficant accounting for all other factors.</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre><code>Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [
-lmerModLmerTest]
-Formula: bias ~ uniq + ss + nitem + (1 | sim_number)
-   Data: fin
-
-REML criterion at convergence: -7625.8
-
-Scaled residuals: 
-    Min      1Q  Median      3Q     Max 
--3.3814 -0.5429 -0.0207  0.4771  4.2247 
-
-Random effects:
- Groups     Name        Variance  Std.Dev.
- sim_number (Intercept) 0.0022575 0.04751 
- Residual               0.0004365 0.02089 
-Number of obs: 1600, groups:  sim_number, 32
-
-Fixed effects:
-             Estimate Std. Error        df t value Pr(&gt;|t|)    
-(Intercept) 7.435e-02  1.462e-02 2.880e+01   5.085 2.04e-05 ***
-uniq        3.371e-04  4.732e-05 1.594e+03   7.125 1.57e-12 ***
-sssmall     2.179e-02  1.685e-02 2.856e+01   1.294    0.206    
-nitem7      2.389e-02  1.684e-02 2.852e+01   1.418    0.167    
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-Correlation of Fixed Effects:
-        (Intr) uniq   sssmll
-uniq    -0.078              
-sssmall -0.572 -0.044       
-nitem7  -0.578  0.035 -0.002</code></pre>
-<pre><code>Analysis of Deviance Table (Type III Wald chisquare tests)
-
-Response: bias
-              Chisq Df Pr(&gt;Chisq)    
-(Intercept) 25.8595  1  3.672e-07 ***
-uniq        50.7622  1  1.043e-12 ***
-ss           1.6734  1     0.1958    
-nitem        2.0118  1     0.1561    
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <pre><code># Effect Size for ANOVA (Type III)
 
 Parameter | Eta2 (partial) |       95% CI
 -----------------------------------------
-uniq      |           0.03 | [0.02, 1.00]
-ss        |           0.06 | [0.00, 1.00]
-nitem     |           0.07 | [0.00, 1.00]
-
-- One-sided CIs: upper bound fixed at [1.00].</code></pre>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<pre><code>Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [
-lmerModLmerTest]
-Formula: 
-m_ARI ~ uniq + ss + me + prev + nclass + nitem + (1 | sim_number)
-   Data: fin
-
-REML criterion at convergence: -4525.6
-
-Scaled residuals: 
-    Min      1Q  Median      3Q     Max 
--4.4334 -0.5030  0.0490  0.5356  3.8519 
-
-Random effects:
- Groups     Name        Variance Std.Dev.
- sim_number (Intercept) 0.002645 0.05143 
- Residual               0.003115 0.05581 
-Number of obs: 1600, groups:  sim_number, 32
-
-Fixed effects:
-              Estimate Std. Error         df t value Pr(&gt;|t|)    
-(Intercept)  1.986e-01  2.263e-02  2.631e+01   8.775 2.70e-09 ***
-uniq        -1.513e-04  1.255e-04  1.552e+03  -1.205  0.22828    
-sssmall     -2.638e-02  1.850e-02  2.645e+01  -1.426  0.16565    
-melow me     4.928e-01  1.871e-02  2.762e+01  26.340  &lt; 2e-16 ***
-prevunequal  1.843e-02  1.841e-02  2.594e+01   1.001  0.32595    
-nclass5     -7.022e-02  1.897e-02  2.915e+01  -3.701  0.00089 ***
-nitem7      -1.007e-01  1.846e-02  2.626e+01  -5.456 9.81e-06 ***
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-Correlation of Fixed Effects:
-            (Intr) uniq   sssmll melowm prvnql nclss5
-uniq        -0.092                                   
-sssmall     -0.394 -0.106                            
-melow me    -0.417  0.182 -0.019                     
-prevunequal -0.403 -0.034  0.004 -0.006              
-nclass5     -0.372 -0.245  0.026 -0.045  0.008       
-nitem7      -0.413  0.086 -0.009  0.016 -0.003 -0.021</code></pre>
-<pre><code>Analysis of Deviance Table (Type III Wald chisquare tests)
-
-Response: m_ARI
-               Chisq Df Pr(&gt;Chisq)    
-(Intercept)  77.0052  1  &lt; 2.2e-16 ***
-uniq          1.4527  1  0.2280979    
-ss            2.0326  1  0.1539578    
-me          693.8113  1  &lt; 2.2e-16 ***
-prev          1.0025  1  0.3167021    
-nclass       13.6974  1  0.0002148 ***
-nitem        29.7677  1   4.87e-08 ***
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<pre><code># Effect Size for ANOVA (Type III)
-
-Parameter | Eta2 (partial) |       95% CI
------------------------------------------
-uniq      |       9.35e-04 | [0.00, 1.00]
+uniq_perc |       9.35e-04 | [0.00, 1.00]
 ss        |           0.07 | [0.00, 1.00]
 me        |           0.96 | [0.94, 1.00]
 prev      |           0.04 | [0.00, 1.00]
@@ -2322,113 +2240,56 @@ nitem     |           0.53 | [0.30, 1.00]
 
 - One-sided CIs: upper bound fixed at [1.00].</code></pre>
 </div>
-<p>Are these bad rule of thumbs?</p>
-<p>At 10% unique solutions - meaning about 50 different likelihood values - you’re more likely to have item parameters with high measurement error… high bias, poor classification… regardless of sample size and number of items</p>
-Having a larger sample size increases the changes that you have items with high measurement error IF THE PERCENTAGE OF UNIQUE SOLUTIONS IS HIGH.
+<p>Now I want to fit a model that only has factors that we would know if we were using empirical data. That is, the percentage of unique solutions, the sample size, and the number of items. Using these three factors to predict bias, we see that only percentage of unique solutions is signficant, although it explains a very small portion of variation.</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-8-1.png" width="624" /><img src="2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-8-2.png" width="624" /><img src="2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-8-3.png" width="624" /></p>
-</div>
-<p>The correlation between percentage of unique solutions and bias is the strongest at .77 when</p>
-Compared to shireman et al who found 0 correlation between MSPE and proportion of unique solutions…… we have much higher! Shireman et al is a mixture model paper not a latent class one.
-<div class="layout-chunk" data-layout="l-body">
-<pre><code>[1] 0.6700061</code></pre>
-<pre><code>[1] 0.6962389</code></pre>
-<pre><code>[1] 0.7066418</code></pre>
-<pre><code>[1] 0.7657891</code></pre>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<pre><code>Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [
-lmerModLmerTest]
-Formula: 
-bias ~ max_n + ss + me + prev + nclass + nitem + (1 | sim_number)
-   Data: fin
-
-REML criterion at convergence: -7720.5
-
-Scaled residuals: 
-    Min      1Q  Median      3Q     Max 
--3.2997 -0.5618 -0.0406  0.4736  3.9574 
-
-Random effects:
- Groups     Name        Variance  Std.Dev.
- sim_number (Intercept) 8.434e-05 0.009184
- Residual               4.276e-04 0.020680
-Number of obs: 1600, groups:  sim_number, 32
-
-Fixed effects:
-              Estimate Std. Error         df t value Pr(&gt;|t|)    
-(Intercept)  1.029e-01  4.520e-03  3.473e+01  22.760  &lt; 2e-16 ***
-max_n       -4.780e-05  5.116e-06  1.592e+03  -9.344  &lt; 2e-16 ***
-sssmall      2.520e-02  3.413e-03  2.559e+01   7.383 8.51e-08 ***
-melow me    -7.556e-02  3.525e-03  2.902e+01 -21.436  &lt; 2e-16 ***
-prevunequal  2.289e-02  3.420e-03  2.578e+01   6.692 4.42e-07 ***
-nclass5      3.814e-02  3.637e-03  3.279e+01  10.487 5.24e-12 ***
-nitem7       2.007e-02  3.408e-03  2.543e+01   5.890 3.57e-06 ***
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-Correlation of Fixed Effects:
-            (Intr) max_n  sssmll melowm prvnql nclss5
-max_n       -0.384                                   
-sssmall     -0.399  0.058                            
-melow me    -0.266 -0.256 -0.015                     
-prevunequal -0.408  0.085  0.005 -0.022              
-nclass5     -0.487  0.349  0.020 -0.089  0.030       
-nitem7      -0.372 -0.014 -0.001  0.004 -0.001 -0.005</code></pre>
-<pre><code>Analysis of Deviance Table (Type III Wald chisquare tests)
-
-Response: bias
-              Chisq Df Pr(&gt;Chisq)    
-(Intercept) 518.014  1  &lt; 2.2e-16 ***
-max_n        87.317  1  &lt; 2.2e-16 ***
-ss           54.510  1  1.546e-13 ***
-me          459.489  1  &lt; 2.2e-16 ***
-prev         44.789  1  2.194e-11 ***
-nclass      109.985  1  &lt; 2.2e-16 ***
-nitem        34.692  1  3.861e-09 ***
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <pre><code># Effect Size for ANOVA (Type III)
 
 Parameter | Eta2 (partial) |       95% CI
 -----------------------------------------
-max_n     |           0.05 | [0.04, 1.00]
-ss        |           0.68 | [0.49, 1.00]
-me        |           0.94 | [0.90, 1.00]
-prev      |           0.63 | [0.43, 1.00]
-nclass    |           0.77 | [0.65, 1.00]
-nitem     |           0.58 | [0.35, 1.00]
+uniq_perc |           0.03 | [0.02, 1.00]
+ss        |           0.06 | [0.00, 1.00]
+nitem     |           0.07 | [0.00, 1.00]
 
 - One-sided CIs: upper bound fixed at [1.00].</code></pre>
 </div>
+<p>For ARI, none of these three factors signficantly explain the variation.</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-11-1.png" width="624" /></p>
-<pre><code>[1] -0.5302882</code></pre>
-<pre><code>[1] -0.4984876</code></pre>
-<pre><code>[1] -0.5719527</code></pre>
-<pre><code>[1] -0.5328275</code></pre>
+<pre><code># Effect Size for ANOVA (Type III)
+
+Parameter | Eta2 (partial) |       95% CI
+-----------------------------------------
+uniq_perc |       1.72e-03 | [0.00, 1.00]
+ss        |       2.54e-03 | [0.00, 1.00]
+nitem     |           0.04 | [0.00, 1.00]
+
+- One-sided CIs: upper bound fixed at [1.00].</code></pre>
 </div>
+<h3 id="trying-to-create-a-rule-of-thumb">Trying to create a rule of thumb?</h3>
+<p>It is interesting to use linear models to characterize the overall relationship between local solutions and outcomes, but it’s not as useful when researchers only have one dataset. I wanted to come up with some rule of thumb (KNOWING that rules of thumbs over-simplify a complex situation) just to catch researcher’s attention and show them the potential of examining something that is often overlooked.</p>
+<p>I graphed the relationship between % of local solutions and bias, and separated it out by number of items and sample size since those are observable factors. The relationship is slightly different depending on the item/sample size combo, but overall I would say that when more than 10% of iterations converge to different local solutions, meaning about 50 different likelihood values if you use 500 different starting values, you’re more likely to have item parameters with high measurement error and high bias.</p>
+<p>It’s important to note that just because you have low percentage of unique solutions, that does not mean that you are guaranteed to have low bias!</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre><code>[1] -0.838787</code></pre>
-<pre><code>[1] -0.8364892</code></pre>
-<pre><code>[1] -0.8269074</code></pre>
-<pre><code>[1] -0.76896</code></pre>
+<p><img src="2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
 </div>
-if more than 10% of iterations converge to unique… you’re prob gonna have high bias
-BUT just because you have low unique_perc DOESNT automatically mean your solution is good
+<p>For data with larger sample sizes, the same 10% value can mark where it is very likely that the data have high measurement error and ARI is low.</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-13-1.png" width="624" /><img src="2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-13-2.png" width="624" /></p>
+<p><img src="2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-10-1.png" width="624" /></p>
 </div>
-<h1 id="second-ll-analysis">second LL analysis</h1>
+<h3 id="correlations">Correlations</h3>
+<p>One last analysis related to percentage of local solutions that I wanted to do was correlations, because the Shireman et. al (2016) also ran them. In my analysis I found that the correlation between bias and percentage of unique solutions was .62, while in their analysis they found it to be 0. On the other hand they found a correlation of -.50 between ARI and unique solutions, while mine was -.45. It is important to point out that their simulation work is based on mixture models, which are more complex compared to latent class models since they involve continous data and estimating covariance matrices. These differences in results justify the need for more latent class-specific research. Research done on growth mixture models or latent profile analysis models may not be directly relevant to latent class models.</p>
+<h3 id="second-ll-analysis">Second LL analysis</h3>
 <p>relationship between distance to second LL and bias?</p>
-Just because the distance is 0 or small doesn’t suggest anything.. BUT if the distance of the second best LL is really big… probably a good sign
+<p>Just because the distance is 0 or small doesn’t suggest anything.. BUT if the distance of the second best LL is really big… probably a good sign</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-14-1.png" width="624" /></p>
+<p><img src="2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-11-1.png" width="624" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-15-1.png" width="624" /><img src="2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-15-2.png" width="624" /></p>
+<p><img src="2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-12-1.png" width="624" /></p>
 </div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 id="conclusions">Conclusions</h2>
+<p>Overall, I’m glad I conducted this mini simulation, as I believe that I’m slowly building a case for examining local solutions. I don’t have any guarantees or damming evidence, but I believe the results I show here should encourage researchers to take even just a quick peak at the iterations that did not converge to the maximum LL. The conclusions we draw about the classes uncovered by the model are entirely dependent on this estimation process, and if it is unstable, then the validity of our solution is threatened big time! I’m hoping to continue this simulation by varying the start value generation method. Stay tuned!</p>
+<p>Thanks for reading.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

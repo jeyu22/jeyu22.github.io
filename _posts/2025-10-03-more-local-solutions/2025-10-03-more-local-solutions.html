@@ -88,635 +88,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>Crouton Thoughts</title>
+  <title>Another exploration of local solutions and bias </title>
+
+  <meta property="description" itemprop="description" content="The quest continues"/>
 
 
-
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2025-10-03"/>
+  <meta property="article:created" itemprop="dateCreated" content="2025-10-03"/>
+  <meta name="article:author" content="Jessica"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Crouton Thoughts"/>
+  <meta property="og:title" content="Another exploration of local solutions and bias "/>
   <meta property="og:type" content="article"/>
+  <meta property="og:description" content="The quest continues"/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:site_name" content="Crouton Thoughts"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Crouton Thoughts"/>
+  <meta property="twitter:title" content="Another exploration of local solutions and bias "/>
+  <meta property="twitter:description" content="The quest continues"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","site","listing"]}},"value":[{"type":"character","attributes":{},"value":["Crouton Thoughts"]},{"type":"character","attributes":{},"value":["distill::distill_website"]},{"type":"character","attributes":{},"value":["posts"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","categories","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Another exploration of local solutions and bias "]},{"type":"character","attributes":{},"value":["The quest continues\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Jessica"]}]}]},{"type":"character","attributes":{},"value":["research"]},{"type":"character","attributes":{},"value":["10-03-2025"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-10-1.png","2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-11-1.png","2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-12-1.png","2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-2-1.png","2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-3-1.png","2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-4-1.png","2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-9-1.png","2025-10-3-more-local-solutions_files/anchor-4.2.2/anchor.min.js","2025-10-3-more-local-solutions_files/bowser-1.9.3/bowser.min.js","2025-10-3-more-local-solutions_files/distill-2.2.21/template.v2.js","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-11-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-13-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-13-2.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-14-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-15-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-15-2.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-2-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-3-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-4-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-8-1.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-8-2.png","2025-10-3-more-local-solutions_files/figure-html5/unnamed-chunk-8-3.png","2025-10-3-more-local-solutions_files/header-attrs-2.29/header-attrs.js","2025-10-3-more-local-solutions_files/jquery-3.6.0/jquery-3.6.0.js","2025-10-3-more-local-solutions_files/jquery-3.6.0/jquery-3.6.0.min.js","2025-10-3-more-local-solutions_files/jquery-3.6.0/jquery-3.6.0.min.map","2025-10-3-more-local-solutions_files/popper-2.6.0/popper.min.js","2025-10-3-more-local-solutions_files/tippy-6.2.7/tippy-bundle.umd.min.js","2025-10-3-more-local-solutions_files/tippy-6.2.7/tippy-light-border.css","2025-10-3-more-local-solutions_files/tippy-6.2.7/tippy.css","2025-10-3-more-local-solutions_files/tippy-6.2.7/tippy.umd.min.js","2025-10-3-more-local-solutions_files/webcomponents-2.0.0/webcomponents.js","2025-10-3-more-local-solutions.html","fin.Rds"]}
+  </script>
   <!--radix_placeholder_navigation_in_header-->
-  <meta name="distill:offset" content=""/>
-
-  <script type="application/javascript">
-
-    window.headroom_prevent_pin = false;
-
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-
-      // initialize headroom for banner
-      var header = $('header').get(0);
-      var headerHeight = header.offsetHeight;
-      var headroom = new Headroom(header, {
-        tolerance: 5,
-        onPin : function() {
-          if (window.headroom_prevent_pin) {
-            window.headroom_prevent_pin = false;
-            headroom.unpin();
-          }
-        }
-      });
-      headroom.init();
-      if(window.location.hash)
-        headroom.unpin();
-      $(header).addClass('headroom--transition');
-
-      // offset scroll location for banner on hash change
-      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
-      window.addEventListener("hashchange", function(event) {
-        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
-      });
-
-      // responsive menu
-      $('.distill-site-header').each(function(i, val) {
-        var topnav = $(this);
-        var toggle = topnav.find('.nav-toggle');
-        toggle.on('click', function() {
-          topnav.toggleClass('responsive');
-        });
-      });
-
-      // nav dropdowns
-      $('.nav-dropbtn').click(function(e) {
-        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
-        $(this).parent().siblings('.nav-dropdown')
-           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $("body").click(function(e){
-        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $(".nav-dropdown").click(function(e){
-        e.stopPropagation();
-      });
-    });
-  </script>
-
-  <style type="text/css">
-
-  /* Theme (user-documented overrideables for nav appearance) */
-
-  .distill-site-nav {
-    color: rgba(255, 255, 255, 0.8);
-    background-color: #0F2E3D;
-    font-size: 15px;
-    font-weight: 300;
-  }
-
-  .distill-site-nav a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .distill-site-nav a:hover {
-    color: white;
-  }
-
-  @media print {
-    .distill-site-nav {
-      display: none;
-    }
-  }
-
-  .distill-site-header {
-
-  }
-
-  .distill-site-footer {
-
-  }
-
-
-  /* Site Header */
-
-  .distill-site-header {
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 3;
-  }
-
-  .distill-site-header .nav-left {
-    display: inline-block;
-    margin-left: 8px;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header .nav-left {
-      margin-left: 0;
-    }
-  }
-
-
-  .distill-site-header .nav-right {
-    float: right;
-    margin-right: 8px;
-  }
-
-  .distill-site-header a,
-  .distill-site-header .title {
-    display: inline-block;
-    text-align: center;
-    padding: 14px 10px 14px 10px;
-  }
-
-  .distill-site-header .title {
-    font-size: 18px;
-    min-width: 150px;
-  }
-
-  .distill-site-header .logo {
-    padding: 0;
-  }
-
-  .distill-site-header .logo img {
-    display: none;
-    max-height: 20px;
-    width: auto;
-    margin-bottom: -4px;
-  }
-
-  .distill-site-header .nav-image img {
-    max-height: 18px;
-    width: auto;
-    display: inline-block;
-    margin-bottom: -3px;
-  }
-
-
-
-  @media screen and (min-width: 1000px) {
-    .distill-site-header .logo img {
-      display: inline-block;
-    }
-    .distill-site-header .nav-left {
-      margin-left: 20px;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 20px;
-    }
-    .distill-site-header .title {
-      padding-left: 12px;
-    }
-  }
-
-
-  .distill-site-header .nav-toggle {
-    display: none;
-  }
-
-  .nav-dropdown {
-    display: inline-block;
-    position: relative;
-  }
-
-  .nav-dropdown .nav-dropbtn {
-    border: none;
-    outline: none;
-    color: rgba(255, 255, 255, 0.8);
-    padding: 16px 10px;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    margin: 0;
-    margin-top: 1px;
-    z-index: 2;
-  }
-
-  .nav-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 200px;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 4px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
-    z-index: 1;
-    margin-top: 2px;
-    white-space: nowrap;
-    padding-top: 4px;
-    padding-bottom: 4px;
-  }
-
-  .nav-dropdown-content hr {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  .nav-dropdown-active {
-    display: block;
-  }
-
-  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
-    color: black;
-    padding: 6px 24px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-
-  .nav-dropdown-content .nav-dropdown-header {
-    display: block;
-    padding: 5px 24px;
-    padding-bottom: 0;
-    text-transform: uppercase;
-    font-size: 14px;
-    color: #999999;
-    white-space: nowrap;
-  }
-
-  .nav-dropdown:hover .nav-dropbtn {
-    color: white;
-  }
-
-  .nav-dropdown-content a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-
-  .nav-right .nav-dropdown-content {
-    margin-left: -45%;
-    right: 0;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
-    .distill-site-header a.nav-toggle {
-      float: right;
-      display: block;
-    }
-    .distill-site-header .title {
-      margin-left: 0;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 0;
-    }
-    .distill-site-header {
-      overflow: hidden;
-    }
-    .nav-right .nav-dropdown-content {
-      margin-left: 0;
-    }
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header.responsive {position: relative; min-height: 500px; }
-    .distill-site-header.responsive a.nav-toggle {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .distill-site-header.responsive a,
-    .distill-site-header.responsive .nav-dropdown {
-      display: block;
-      text-align: left;
-    }
-    .distill-site-header.responsive .nav-left,
-    .distill-site-header.responsive .nav-right {
-      width: 100%;
-    }
-    .distill-site-header.responsive .nav-dropdown {float: none;}
-    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
-    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
-      display: block;
-      width: 100%;
-      text-align: left;
-    }
-  }
-
-  /* Site Footer */
-
-  .distill-site-footer {
-    width: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-    z-index: 3;
-    margin-top: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-align: center;
-  }
-
-  /* Headroom */
-
-  d-title {
-    padding-top: 6rem;
-  }
-
-  @media print {
-    d-title {
-      padding-top: 4rem;
-    }
-  }
-
-  .headroom {
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-
-  .headroom--transition {
-    transition: all .4s ease-in-out;
-  }
-
-  .headroom--unpinned {
-    top: -100px;
-  }
-
-  .headroom--pinned {
-    top: 0;
-  }
-
-  /* adjust viewport for navbar height */
-  /* helps vertically center bootstrap (non-distill) content */
-  .min-vh-100 {
-    min-height: calc(100vh - 100px) !important;
-  }
-
-  </style>
-
-  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-  <link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"/>
-  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
-  <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
-  <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
-
-  <script type="application/javascript">
-
-  function getMeta(metaName) {
-    var metas = document.getElementsByTagName('meta');
-    for (let i = 0; i < metas.length; i++) {
-      if (metas[i].getAttribute('name') === metaName) {
-        return metas[i].getAttribute('content');
-      }
-    }
-    return '';
-  }
-
-  function offsetURL(url) {
-    var offset = getMeta('distill:offset');
-    return offset ? offset + '/' + url : url;
-  }
-
-  function createFuseIndex() {
-
-    // create fuse index
-    var options = {
-      keys: [
-        { name: 'title', weight: 20 },
-        { name: 'categories', weight: 15 },
-        { name: 'description', weight: 10 },
-        { name: 'contents', weight: 5 },
-      ],
-      ignoreLocation: true,
-      threshold: 0
-    };
-    var fuse = new window.Fuse([], options);
-
-    // fetch the main search.json
-    return fetch(offsetURL('search.json'))
-      .then(function(response) {
-        if (response.status == 200) {
-          return response.json().then(function(json) {
-            // index main articles
-            json.articles.forEach(function(article) {
-              fuse.add(article);
-            });
-            // download collections and index their articles
-            return Promise.all(json.collections.map(function(collection) {
-              return fetch(offsetURL(collection)).then(function(response) {
-                if (response.status === 200) {
-                  return response.json().then(function(articles) {
-                    articles.forEach(function(article) {
-                      fuse.add(article);
-                    });
-                  })
-                } else {
-                  return Promise.reject(
-                    new Error('Unexpected status from search index request: ' +
-                              response.status)
-                  );
-                }
-              });
-            })).then(function() {
-              return fuse;
-            });
-          });
-
-        } else {
-          return Promise.reject(
-            new Error('Unexpected status from search index request: ' +
-                        response.status)
-          );
-        }
-      });
-  }
-
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-
-    // get search element (bail if we don't have one)
-    var searchEl = window.document.getElementById('distill-search');
-    if (!searchEl)
-      return;
-
-    createFuseIndex()
-      .then(function(fuse) {
-
-        // make search box visible
-        searchEl.classList.remove('hidden');
-
-        // initialize autocomplete
-        var options = {
-          autoselect: true,
-          hint: false,
-          minLength: 2,
-        };
-        window.autocomplete(searchEl, options, [{
-          source: function(query, callback) {
-            const searchOptions = {
-              isCaseSensitive: false,
-              shouldSort: true,
-              minMatchCharLength: 2,
-              limit: 10,
-            };
-            var results = fuse.search(query, searchOptions);
-            callback(results
-              .map(function(result) { return result.item; })
-            );
-          },
-          templates: {
-            suggestion: function(suggestion) {
-              var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
-                ? `<img src="${offsetURL(suggestion.preview)}"</img>`
-                : '';
-              var html = `
-                <div class="search-item">
-                  <h3>${suggestion.title}</h3>
-                  <div class="search-item-description">
-                    ${suggestion.description || ''}
-                  </div>
-                  <div class="search-item-preview">
-                    ${img}
-                  </div>
-                </div>
-              `;
-              return html;
-            }
-          }
-        }]).on('autocomplete:selected', function(event, suggestion) {
-          window.location.href = offsetURL(suggestion.path);
-        });
-        // remove inline display style on autocompleter (we want to
-        // manage responsive display via css)
-        $('.algolia-autocomplete').css("display", "");
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-
-  });
-
-  </script>
-
-  <style type="text/css">
-
-  .nav-search {
-    font-size: x-small;
-  }
-
-  /* Algolioa Autocomplete */
-
-  .algolia-autocomplete {
-    display: inline-block;
-    margin-left: 10px;
-    vertical-align: sub;
-    background-color: white;
-    color: black;
-    padding: 6px;
-    padding-top: 8px;
-    padding-bottom: 0;
-    border-radius: 6px;
-    border: 1px #0F2E3D solid;
-    width: 180px;
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-nav .algolia-autocomplete {
-      display: none;
-      visibility: hidden;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete {
-      display: inline-block;
-      visibility: visible;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
-      margin-left: 0;
-      width: 400px;
-      max-height: 400px;
-    }
-  }
-
-  .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
-    width: 90%;
-    outline: none;
-    border: none;
-  }
-
-  .algolia-autocomplete .aa-hint {
-    color: #999;
-  }
-  .algolia-autocomplete .aa-dropdown-menu {
-    width: 550px;
-    max-height: 70vh;
-    overflow-x: visible;
-    overflow-y: scroll;
-    padding: 5px;
-    margin-top: 3px;
-    margin-left: -150px;
-    background-color: #fff;
-    border-radius: 5px;
-    border: 1px solid #999;
-    border-top: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
-    cursor: pointer;
-    padding: 5px 4px;
-    border-bottom: 1px solid #eee;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
-    border-bottom: none;
-    margin-bottom: 2px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
-    overflow: hidden;
-    font-size: 0.8em;
-    line-height: 1.4em;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
-    font-size: 1rem;
-    margin-block-start: 0;
-    margin-block-end: 5px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
-    display: inline-block;
-    overflow: hidden;
-    height: 2.8em;
-    width: 80%;
-    margin-right: 4%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
-    display: inline-block;
-    width: 15%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
-    height: 3em;
-    width: auto;
-    display: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
-    display: initial;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
-    background-color: #eee;
-  }
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
-    font-weight: bold;
-    font-style: normal;
-  }
-
-  </style>
-
-
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
 
@@ -2096,408 +1500,175 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
-  <script src="site_libs/popper-2.6.0/popper.min.js"></script>
-  <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
-  <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
-  <script src="site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
-  <script src="site_libs/anchor-4.2.2/anchor.min.js"></script>
-  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
-  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
-  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
+  <script src="2025-10-03-more-local-solutions_files/header-attrs-2.29/header-attrs.js"></script>
+  <script src="2025-10-03-more-local-solutions_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="2025-10-03-more-local-solutions_files/popper-2.6.0/popper.min.js"></script>
+  <link href="2025-10-03-more-local-solutions_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="2025-10-03-more-local-solutions_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="2025-10-03-more-local-solutions_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="2025-10-03-more-local-solutions_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="2025-10-03-more-local-solutions_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="2025-10-03-more-local-solutions_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="2025-10-03-more-local-solutions_files/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
   <!--/radix_placeholder_site_in_header-->
 
 
 </head>
 
-<body class="layout-listing">
+<body>
 
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Crouton Thoughts","authors":[]}
+{"title":"Another exploration of local solutions and bias ","description":"The quest continues","authors":[{"author":"Jessica","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2025-10-03T00:00:00.000-07:00","citationText":"Jessica, 2025"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
 <!--radix_placeholder_navigation_before_body-->
-<header class="header header--fixed" role="banner">
-<nav class="distill-site-nav distill-site-header">
-<div class="nav-left">
-<a href="index.html" class="title">Crouton Thoughts</a>
-<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
-</div>
-<div class="nav-right">
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="food.html">Food</a>
-<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
-</div>
-</nav>
-</header>
 <!--/radix_placeholder_navigation_before_body-->
 <!--radix_placeholder_site_before_body-->
 <!--/radix_placeholder_site_before_body-->
-<!--radix_placeholder_article_listing-->
-
-
-<script type="application/javascript">
-
-function init_posts_list() {
-
-  function load_image(img) {
-    var src = $(img).attr('data-src');
-    if (src) {
-      $(img).attr('src', src);
-      $(img).on("load", function() {
-        img.removeAttribute('data-src');
-      });
-    }
-  }
-
-  function set_posts_visible(posts, visible) {
-    if (visible) {
-
-      // show bottom border by default
-      $(posts).removeClass('post-preview-last');
-
-      // apply limits if need be
-      var max_posts = 25;
-      var apply_limits = $('.posts-container').hasClass('posts-apply-limit');
-      if (apply_limits && posts.length > max_posts) {
-        posts = $(posts).slice(0, max_posts);
-      } else {
-        $('.posts-more a').addClass('hidden');
-      }
-
-      // apply last style
-      $(posts.slice(-1)[0]).addClass('post-preview-last');
-
-      $(posts).removeClass('hidden');
-      $(posts).find('img[data-src]').each(function(i, img) {
-        load_image(img);
-      });
-    } else {
-      $(posts).addClass('hidden');
-    }
-  }
-
-  function apply_hash_filter() {
-
-    // clear active state
-    $('.categories .active').removeClass('active');
-
-    // mark all posts invisible to start
-    set_posts_visible($('.posts-list').children('a'), false);
-
-    // if we have a hash filter
-    if (window.location.hash && window.location.hash.startsWith("#category:")) {
-
-      // mark posts that match the category visible
-      var page_category = window.location.hash.replace(/^#category:/, "");
-      page_category = decodeURIComponent(page_category)
-      var posts = $('.post-metadata').map(function(idx, script) {
-        var metadata = $.parseJSON($(script).html());
-        var post = null;
-        $.each(metadata.categories, function(idx, category) {
-          category = category.replace(/ /g,"_");
-          if ((page_category || '').toLowerCase() === "articles" || category === page_category) {
-            post = $(script).parent().get();
-            return false;
-          }
-        });
-        return post;
-      });
-      set_posts_visible(posts, true);
-
-      // mark the hash active
-      $('.categories li>a[href="' + decodeURIComponent(window.location.hash) + '"]').addClass('active');
-
-      // update the list_caption
-      var list_caption = $('.posts-list-caption');
-      var caption = (page_category || '').toLowerCase() === "articles"
-        ? list_caption.attr('data-caption')
-        : ('Category: ' + page_category.replace(/_/g," "));
-      list_caption.text(caption);
-
-    } else {
-
-      // no hash filter, make all posts visible (subject to max display)
-      set_posts_visible($('.posts-list').children(), true);
-
-      // reset list caption
-      var list_caption = $('.posts-list-caption');
-      list_caption.text(list_caption.attr('data-caption'));
-
-
-    }
-  }
-
-  // more articles
-  function apply_post_limits(apply) {
-    if (apply) {
-      $('.posts-container').addClass('posts-apply-limit');
-      $('.posts-more a').removeClass('hidden');
-    } else {
-      $('.posts-container').removeClass('posts-apply-limit');
-      $('.posts-more a').addClass('hidden');
-    }
-  }
-
-  // click handling for tags
-  $('.dt-tag').click(function(ev) {
-    window.location.hash = '#category:' + $(this).text().replace(/ /g, "_");
-    return false;
-  })
-
-  // hash filter handling
-  apply_hash_filter();
-  $(window).on('hashchange',function() {
-    apply_post_limits(true);
-    apply_hash_filter();
-  });
-
-  // more articles link
-  $('.posts-more a').click(function(e) {
-    e.preventDefault();
-    apply_post_limits(false);
-    apply_hash_filter();
-    return false;
-  });
-
-}
-
-</script>
-
-
-
-<div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
-<div class="posts-list">
-<h1 class="posts-list-caption" data-caption="Crouton Thoughts">Crouton Thoughts</h1>
-<a href="posts/2025-10-29-generals/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["research"]}</script>
-<div class="metadata">
-<div class="publishedDate">Oct. 29, 2025</div>
-<div class="dt-authors">
-<div class="dt-author">Jessica</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Brainstorming for generals exam</h2>
-<div class="dt-tags">
-<div class="dt-tag">research</div>
-</div>
-<p>The more I learn the less I know</p>
-</div>
-</a>
-<a href="posts/2025-10-03-more-local-solutions/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["research"]}</script>
-<div class="metadata">
-<div class="publishedDate">Oct. 3, 2025</div>
-<div class="dt-authors">
-<div class="dt-author">Jessica</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2025-10-03-more-local-solutions/2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-2-1.png"/>
-</div>
-<div class="description">
-<h2>Another exploration of local solutions and bias </h2>
-<div class="dt-tags">
-<div class="dt-tag">research</div>
-</div>
-<p>The quest continues</p>
-</div>
-</a>
-<a href="posts/2025-09-06-masters-thesis/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["research"]}</script>
-<div class="metadata">
-<div class="publishedDate">Sept. 6, 2025</div>
-<div class="dt-authors">
-<div class="dt-author">Jessica</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Comparison of Algorithms for Estimating Latent Class Models</h2>
-<div class="dt-tags">
-<div class="dt-tag">research</div>
-</div>
-<p>My master's thesis!</p>
-</div>
-</a>
-<a href="posts/2025-08-18-local-solutions/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["research"]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 18, 2025</div>
-<div class="dt-authors">
-<div class="dt-author">Jessica</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Can we use local solutions to predict quality of latent class models?</h2>
-<div class="dt-tags">
-<div class="dt-tag">research</div>
-</div>
-<p>One man's trash is another man's treasure</p>
-</div>
-</a>
-<a href="posts/2025-08-05-startvalues/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["research"]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 5, 2025</div>
-<div class="dt-authors">
-<div class="dt-author">Jessica</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2025-08-05-startvalues/randompr.png"/>
-</div>
-<div class="description">
-<h2>Start value generation methods and their impact on Latent Class Models</h2>
-<div class="dt-tags">
-<div class="dt-tag">research</div>
-</div>
-<p>Opening a can of worms...</p>
-</div>
-</a>
-<a href="posts/2025-07-28-discrete-continous-LV/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["research"]}</script>
-<div class="metadata">
-<div class="publishedDate">July 28, 2025</div>
-<div class="dt-authors">
-<div class="dt-author">Jessica</div>
-</div>
-</div>
-<div class="thumbnail">
-<img data-src="posts/2025-07-28-discrete-continous-LV/2025-07-28-discrete-continous_files/figure-html5/unnamed-chunk-3-1.png"/>
-</div>
-<div class="description">
-<h2>Discrete vs Continous Latent Variables</h2>
-<div class="dt-tags">
-<div class="dt-tag">research</div>
-</div>
-<p>"All models are wrong, but some are useful" - George Box</p>
-</div>
-</a>
-<a href="posts/2025-07-19-poLCA/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["research"]}</script>
-<div class="metadata">
-<div class="publishedDate">July 19, 2025</div>
-<div class="dt-authors">
-<div class="dt-author">Jessica</div>
-</div>
-</div>
-<div class="thumbnail">
-<img data-src="posts/2025-07-19-poLCA/Rplot1.png"/>
-</div>
-<div class="description">
-<h2>poLCA: Starting values for Class Prevalence Probabilities</h2>
-<div class="dt-tags">
-<div class="dt-tag">research</div>
-</div>
-<p>Sometimes maybe less is more..</p>
-</div>
-</a>
-<a href="posts/2025-07-18-welcome-again/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["food","research"]}</script>
-<div class="metadata">
-<div class="publishedDate">July 18, 2025</div>
-<div class="dt-authors">
-<div class="dt-author">Jessica</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>My First Post (PhD verison)</h2>
-<div class="dt-tags">
-<div class="dt-tag">food</div>
-<div class="dt-tag">research</div>
-</div>
-<p>It's been 4 years since my last post! I still don't know how to use git</p>
-</div>
-</a>
-<a href="posts/2021-08-11-my-first-post/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 11, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Jessica</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>My First Post</h2>
-<div class="dt-tags"></div>
-<p>I'm really struggling with the distill package! And git commands!</p>
-</div>
-</a>
-<a href="posts/welcome/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 11, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Jessica</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Welcome to Crouton Thoughts</h2>
-<div class="dt-tags"></div>
-<p>The world needs to hear what I have to say!</p>
-</div>
-</a>
-</div>
-<div class="posts-sidebar">
-<div class="sidebar-section categories">
-<h3>Categories</h3>
-<ul>
-<li>
-<a href="#category:articles">articles</a>
-<span class="category-count">(10)</span>
-</li>
-<li>
-<a href="#category:food">food</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:research">research</a>
-<span class="category-count">(8)</span>
-</li>
-</ul>
-</div>
-</div>
-<div class="posts-more">
-<a href="#">More articles &raquo;</a>
-</div>
-</div>
-<!--/radix_placeholder_article_listing-->
 
 <div class="d-title">
-<h1>Crouton Thoughts</h1>
+<h1>Another exploration of local solutions and bias</h1>
 
 <!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt-tag">research</div>
+</div>
 <!--/radix_placeholder_categories-->
-
+<p><p>The quest continues</p></p>
 </div>
 
+<div class="d-byline">
+  Jessica  
+  
+<br/>10-03-2025
+</div>
 
 <div class="d-article">
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 id="introduction">Introduction</h2>
+<p>The work of my master’s thesis focused on estimation issues in latent class models. One area in particular that I started to explore was local solutions - solutions that an algorithm converges to when estimating a latent class model that don’t have the largest maximum likelihood (LL) across all of the iterations. In practice we only examine and report the solution with the largest maximum LL solution, which makes sense because we are trying to find parameters that are the closest to describing the observed data we have. However, in these past few years I have taken an interest in taking a closer look at these local solutions. Can information about their frequency or where they converge to shed light on the quality of our latent class model solution? While there have been simulation studies that study the relationship between class size, true parameter values, class prevalence size, and quality metrics of latent class models like bias or classification accuracy, we don’t know these variables in real life with empirical data. In my master’s thesis I showed that local solutions increased with worse data conditions, and in those same undesirable conditions the second best LL solution was also very close (often by a LL distance of .001) to the maximum LL solution. From my work and work from <a href="https://www.tandfonline.com/doi/full/10.1080/00273171.2016.1160359">Shireman et al. (2016)</a>, there is weak evidence to suggest that local solutions can be informative..but I’m not satisfied! My simulation results are disaggregated by factors that we would only know in simulation research. I also only could only run 8 datasets per simulation condition because I was using Newton-Raphson as an estimation algorithm, and it was computationally intense. Thus, I wanted to continue expanding on this work..</p>
+<h2 id="method">Method</h2>
+<p>In order to save time I only used the EM algorithm from R’s poLCA package to run this mini simulation study, but I whole-heartedly believe that these results could change if I used a different estimation algorithm, or even a different starting generation method! One simulation study can’t cover all possible cases, so that just means there is more to be done.
+In this simulation I varied 5 factors that pertain to latent class models:
+- sample size (400 vs 1,000)
+- measurement error (low vs high)
+- class prevalence (balanced vs unbalanced)
+- number of classes (3 vs 5)
+- number of items (7 vs 10)</p>
+<p>High measurement error means that item response probability parameters in each class took on values of .65 or .35. These probabilities are consider high error because if people in a class are estimated to have a 65% chance of saying yes to a particular item, that means that people ALSO have a 35% chance of saying no to that item.. If you want to describe this class as a one where people “tend” to say yes to this particular item, you don’t have a ton of confidence in saying that! On the other hand, the low measurement error involves item response probabilities of .8 and .2, which have less chance of responding in the “opposing” way.</p>
+<p>Class prevalence balance refers to whether one class represents a majority of the sample or not. In the unbalanced class prevalence condition for 3 classes the largest class is 70% of the sample, while the largest class is 50% of the sample for the 5 class conditions.</p>
+<p>These 5 factors cross to make 32 simulation conditions, and for each of these conditions I simulated 50 datasets. For each dataset I ran 500 iterations with a maximum iteration of 10,000. The information of interest I collected are:
+- Classification accuracy and Adjusted Rand Index (ARI)
+- Percentage of unique solutions: out of 500 iterations, how many are unique LL solutions?
+- Frequency of maximum LL solution
+- Bias
+- Second largest LL frequency and distance from maximum LL</p>
+<h2 id="results">Results</h2>
+<h3 id="ari-vs-classification-accuracy">ARI vs Classification Accuracy</h3>
+<p>I want to first start off by comparing ARI and classification accuracy (CA). I first learned of ARI from the Shireman et. al (2016) paper so I was unsure of how it different from CA, which just summarizes the average of successful class assignment based on the largest class posterior probability. ARI is a little bit more complicated and accounts for the fact that individuals could have been correctly assigned due to random chance, so it is more conservative. I wanted to know which one I should use as the metric for classification.</p>
+<p>The figure below plots the ARI and CA for each of the datasets in the simulation. Overall, ARI is consistently a more conservative indicator, so I will use this metric moving forward. It is interesting to see the sharp distinction that measurement error creates. Data with high measurement error are much more likely to have more classification results. This makes sense since more measurement error means more variation in response patterns in a given class.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
+</div>
+<h3 id="relationship-between-local-solutions-bias-and-ari">Relationship between local solutions, bias, and ARI</h3>
+<p>Based on the pairs plot below, we can identify a few trends between the 3 variables.<br />
+- Percentage of unique solutions and bias are positively correlated, and it appears that there is a ceiling value of around .25 for bias. This ceiling is probably specific to the number of parameters in this simulation study and not indicative of all latent class models.
+- Percentage of unique solutions and ARI don’t really have a linear relationship. Once the percentage of unique solutions pass 10%, ARI is guaranteed to be low. The reverse is not guaranteed to be true: if the percentage of unique solutions is less than 10%, there isn’t a clear pattern.
+- ARI is bimodal when looking at the relationship between ARI and bias, but within each mode bias tends to decrease as ARI increases.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+</div>
+<h3 id="more-on-ari-being-bimodal">More on ARI being bimodal</h3>
+<p>In order to understand how ARI is bimodal in the context of bias, I graphed their relationship while also separating by measurement error. When measurement error is low: high ARI (higher than .7) almost guarantees low bias, but just because ARI is low doesn’t mean that bias is necessarily going to be high…</p>
+<p>On the other hand, when measurement error is high: it is still possible for bias to be low even when ARI is objectively low (around .2), although it is not guaranteed.</p>
+<p>This distinct bimodal pattern can only be distinguished by measurement error, not by the number of items or classes, etc.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
+</div>
+<h3 id="simulation-factors-predicting-bias-and-ari">Simulation factors predicting bias and ARI</h3>
+<p>Much like what I did for my master’s thesis, I wanted to see whether these factors can adequately predict outcomes, and which factors explained most of the variation. Partial Eta-Squareds for the first mixed effects model are shown below. In this model the outcome is bias. Measurement error explains most of the variation in bias, along with the number of classes. The percentage of unique solutions explains little variation, but it is significant!</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code># Effect Size for ANOVA (Type III)
+
+Parameter | Eta2 (partial) |       95% CI
+-----------------------------------------
+uniq_perc |           0.03 | [0.01, 1.00]
+ss        |           0.47 | [0.23, 1.00]
+me        |           0.90 | [0.83, 1.00]
+prev      |           0.51 | [0.27, 1.00]
+nclass    |           0.67 | [0.50, 1.00]
+nitem     |           0.48 | [0.24, 1.00]
+
+- One-sided CIs: upper bound fixed at [1.00].</code></pre>
+</div>
+<p>With ARI we can see that measurement error explains even more of the variation than in the model with bias. The percentage of unique solutions is not signficant accounting for all other factors.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code># Effect Size for ANOVA (Type III)
+
+Parameter | Eta2 (partial) |       95% CI
+-----------------------------------------
+uniq_perc |       9.35e-04 | [0.00, 1.00]
+ss        |           0.07 | [0.00, 1.00]
+me        |           0.96 | [0.94, 1.00]
+prev      |           0.04 | [0.00, 1.00]
+nclass    |           0.32 | [0.10, 1.00]
+nitem     |           0.53 | [0.30, 1.00]
+
+- One-sided CIs: upper bound fixed at [1.00].</code></pre>
+</div>
+<p>Now I want to fit a model that only has factors that we would know if we were using empirical data. That is, the percentage of unique solutions, the sample size, and the number of items. Using these three factors to predict bias, we see that only percentage of unique solutions is signficant, although it explains a very small portion of variation.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code># Effect Size for ANOVA (Type III)
+
+Parameter | Eta2 (partial) |       95% CI
+-----------------------------------------
+uniq_perc |           0.03 | [0.02, 1.00]
+ss        |           0.06 | [0.00, 1.00]
+nitem     |           0.07 | [0.00, 1.00]
+
+- One-sided CIs: upper bound fixed at [1.00].</code></pre>
+</div>
+<p>For ARI, none of these three factors signficantly explain the variation.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code># Effect Size for ANOVA (Type III)
+
+Parameter | Eta2 (partial) |       95% CI
+-----------------------------------------
+uniq_perc |       1.72e-03 | [0.00, 1.00]
+ss        |       2.54e-03 | [0.00, 1.00]
+nitem     |           0.04 | [0.00, 1.00]
+
+- One-sided CIs: upper bound fixed at [1.00].</code></pre>
+</div>
+<h3 id="trying-to-create-a-rule-of-thumb">Trying to create a rule of thumb?</h3>
+<p>It is interesting to use linear models to characterize the overall relationship between local solutions and outcomes, but it’s not as useful when researchers only have one dataset. I wanted to come up with some rule of thumb (KNOWING that rules of thumbs over-simplify a complex situation) just to catch researcher’s attention and show them the potential of examining something that is often overlooked.</p>
+<p>I graphed the relationship between % of local solutions and bias, and separated it out by number of items and sample size since those are observable factors. The relationship is slightly different depending on the item/sample size combo, but overall I would say that when more than 10% of iterations converge to different local solutions, meaning about 50 different likelihood values if you use 500 different starting values, you’re more likely to have item parameters with high measurement error and high bias.</p>
+<p>It’s important to note that just because you have low percentage of unique solutions, that does not mean that you are guaranteed to have low bias!</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
+</div>
+<p>For data with larger sample sizes, the same 10% value can mark where it is very likely that the data have high measurement error and ARI is low.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-10-1.png" width="624" /></p>
+</div>
+<h3 id="correlations">Correlations</h3>
+<p>One last analysis related to percentage of local solutions that I wanted to do was correlations, because the Shireman et. al (2016) also ran them. In my analysis I found that the correlation between bias and percentage of unique solutions was .62, while in their analysis they found it to be 0. On the other hand they found a correlation of -.50 between ARI and unique solutions, while mine was -.45. It is important to point out that their simulation work is based on mixture models, which are more complex compared to latent class models since they involve continous data and estimating covariance matrices. These differences in results justify the need for more latent class-specific research. Research done on growth mixture models or latent profile analysis models may not be directly relevant to latent class models.</p>
+<h3 id="second-ll-analysis">Second LL analysis</h3>
+<p>relationship between distance to second LL and bias?</p>
+<p>Just because the distance is 0 or small doesn’t suggest anything.. BUT if the distance of the second best LL is really big… probably a good sign</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-11-1.png" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="2025-10-03-more-local-solutions_files/figure-html5/unnamed-chunk-12-1.png" width="624" /></p>
+</div>
+<h2 id="conclusions">Conclusions</h2>
+<p>Overall, I’m glad I conducted this mini simulation, as I believe that I’m slowly building a case for examining local solutions. I don’t have any guarantees or damming evidence, but I believe the results I show here should encourage researchers to take even just a quick peak at the iterations that did not converge to the maximum LL. The conclusions we draw about the classes uncovered by the model are entirely dependent on this estimation process, and if it is unstable, then the validity of our solution is threatened big time! I’m hoping to continue this simulation by varying the start value generation method. Stay tuned!</p>
+<p>Thanks for reading.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
