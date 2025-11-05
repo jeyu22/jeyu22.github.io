@@ -1,0 +1,201 @@
+---
+title: "Impact of estimation algorithm on class enumeration"
+description: |
+  A case study
+author:
+  - name: Jessica
+categories:
+  - research
+date: 11-04-2025
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo =F, message = F, warning = F)
+
+library(tidyverse)
+library(kableExtra)
+EM_miss <- readRDS("EM_miss.Rds")
+NR_miss <- readRDS("NR_miss.Rds")
+```
+
+## Introduction
+
+For my master's thesis I was interested in comparing the performance of two estimation algorithms for latent class models: Newton Raphson (NR) and Expectation-Maximization (EM). EM is the most common estimation algorithm, although there are hybrid algorithms that combine the two. I was inspired by a paper from [Chen et. al (2020)](https://www.tandfonline.com/doi/abs/10.1080/03610918.2020.1764034) , where the authors did a similar comparison through a simulation study and found that certain derivative based methods (sequential quadratic-programming and projected quasi-newton) tended to find better log-likelihood (LL) solutions compared to EM. Since the second year of my PhD program I have been interested in derivative based estimation algorithms. Their procedure has always been more intuitive to me compared to EM, but more importantly I found that their utility has been underexplored in the context of latent class models. Since the likelihood surface for mixture models is so complicated, with many local minima, it is important to make sure that we have adequately explore the parameter surface. Examining the estimation algorithm is one way to do that, along with comparing different methods for generating start values. 
+
+From my master's thesis I found that occasionally NR converged to a better maximum LL solution compared to EM when data conditions were subpar- small sample sizes, high measurement error in item parameters, and unbalanced latent class prevalences (one class describes a large portion of the sample while other classes are small).One flaw in my study was that I only fit the correct number of classes. In my simulation study the true number of classes across all conditions was 4, and I only attempted to fit 4 classes for all of the datasets due to time constraints. However, outside of simulation studies the true number of classes is never known. Normally a range of classes of fit (first fitting one class, then two classes, etc.) and the optimal number of classes is chosen based on a combination of fit criteria (BIC/AIC), likelihood ratio tests, and theoretical relevance. If a class structure truly exists in the data, then one will definetly fit the wrong number of classes at some point. An unanswered question I had after completing my masters was how do NR and EM compare when fitting the incorrect number of classes? If they can differ in the final solution when fitting the correct number of classes, then it is likely that they may also differ in all other scenarios. 
+
+## Method
+Unfortunately at the moment I don't have time to do a full blown simulation study. Actually, there aren't many latent class simulation studies that fit the wrong number of classes to the data so this could be an area for future research. Instead, I just used one dataset from one of my simulation conditions. The data is a sample size of 400 with high measurement error, unbalanced latent class prevalence, and 10 binary items. The true number of classes is 4. The item response probabilities and class proportions are shown in the table below. 
+
+
+```{r}
+rho_table3 <- tribble(
+  ~TrueParameters,     ~Class1, ~Class2, ~Class3, ~Class4,
+  "Class Prevalence", 0.70,    0.15, 0.10, 0.05,
+  "Item 1",  0.65,    0.65,    0.35,    0.35,
+  "Item 2",  0.65,    0.65,    0.35,    0.35,
+  "Item 3",  0.65,    0.65,    0.35,    0.35,
+  "Item 4",  0.65,    0.65,    0.35,    0.35,
+  "Item 5",  0.65,    0.65,    0.35,    0.35,
+  "Item 6",  0.65,    0.65,    0.65,    0.35,
+  "Item 7",  0.65,    0.65,    0.65,    0.35,
+  "Item 8",  0.65,    0.65,    0.65,    0.35,
+  "Item 9",  0.65,    0.65,    0.65,    0.35,
+  "Item 10", 0.65,    0.65,    0.65,    0.35
+)
+kable(rho_table3 , caption = "True Parameters",booktabs = T)
+```
+
+I fit models with 2,3,4, and 5 classes, each with 500 iterations and each with the same sets of starting values for both NR and EM. STATA was used to estimate models using NR and the poLCA package in R was used to estimate models using EM. In subsequent analysis I will examine the number of local solutions produced by each algorithm due to my own personal interest in the potential of using local solutions as a predictor of estimation quality. I have explored this concept in some of my other blog posts!
+
+## Results
+
+For each of the K classes fit (K=2-5), I will show the frequency of LL values reached for both NR and EM. I chose not to display a historgram or other visualization because I think it is easier to see the exact LL values and detect differences. The devil is in the differences! The results below are for two classes.
+
+```{r}
+cat("EM:")
+table(EM_miss[[2]]$o_ll)
+cat("NR:")
+table(NR_miss[[2]]$o_ll)
+```
+When fitting 2 classes, both NR and EM converged to the same LL value at the same frequency (minus 1 NR iteration that did not converge). This was a little surprising to me because my hypothesis was that forcing a 2 class model on data with a 4 class structure may lead to more local optima in the likelihood surface, but that does not seem to be the case. Perhaps having fewer parameters (only 21 compared to 43 for a 4 class model) leads to a smoother likelihood surface despite the misspecification.
+
+Fitting 3 classes:
+
+```{r}
+cat("EM")
+table(EM_miss[[3]]$o_ll)
+cat("NR")
+table(NR_miss[[3]]$o_ll)
+```
+When fitting 3 classes NR and EM clearly diverge. Although NR has more unique solutions, NR reaches a higher maximum LL solution compared to EM. I want to reiterate here that both algorithms were given the same set of starting values. Some may argue that the LL solution reached by NR is spurious because it only occured one time. I would argue that it is not a spurious solution based on the parameter estimates shown below which only has one boundary estimate (compared to 4 in the EM solution). The prevalence of each of the classes is also quite large.
+
+
+```{r}
+table3 <- tribble(
+  ~EstimatesNR,     ~Class1, ~Class2, ~Class3,
+  "Class Prevalence",  0.47,    0.32,    0.21,
+  "Item 1",            0.63,    0.35,    0.30,
+  "Item 2",            0.43,    0.62,    0.66,
+  "Item 3",            0.44,    0.34,    0.62,
+  "Item 4",            0.50,    0.77,    0.44,
+  "Item 5",            0.71,    0.61,    0.67,
+  "Item 6",            0.55,    0.41,    0.38,
+  "Item 7",            0.50,    0.63,    0.76,
+  "Item 8",            1.00,    0.47,    0.59,
+  "Item 9",            0.30,    0.60,    0.22,
+  "Item 10",           0.76,    0.67,    0.30
+)
+
+
+table4 <- tribble(
+  ~EstimatesEM,     ~Class1, ~Class2, ~Class3,
+  "Class Prevalence",  0.49,    0.48,    0.03,
+  "Item 1",            0.45,    0.69,    1.00,
+  "Item 2",            0.44,    0.75,    1.00,
+  "Item 3",            0.51,    0.71,    0.46,
+  "Item 4",            0.55,    0.71,    0.41,
+  "Item 5",            0.54,    0.60,    0.80,
+  "Item 6",            0.51,    0.73,    0.23,
+  "Item 7",            0.51,    0.76,    0.04,
+  "Item 8",            0.49,    0.72,    0.00,
+  "Item 9",            0.60,    0.70,    0.00,
+  "Item 10",           0.52,    0.65,    0.45
+)
+
+kable(list(table3,table4) , caption = "NR vs EM solution",booktabs = T)
+```
+
+I would say that neither of the two 3-class solutions align with the true data generating parameters, but NR's solution has less boundary estimates (estimates of 0 or 1) and reasonable class sizes. Since this is simulated data I can't use theoretical relevance to say which solution would be superior. On likelihood value alone I would say NR is the superior solution. This difference in the maximum LL solution will have consequences for class enumeration, more on that later. 
+
+
+Fitting 4 classes:
+
+```{r}
+cat("EM")
+table(EM_miss[[4]]$o_ll)
+cat("NR")
+table(NR_miss[[4]]$o_ll)
+```
+This solution results from fitting the true number of classes. EM has more local solutions compared to NR. Both algorithms converge to the same maximum LL solution, but EM does so at a higher frequency. 
+
+Fitting 5 classes:
+
+```{r}
+cat("EM")
+table(EM_miss[[5]]$o_ll)
+cat("NR")
+table(NR_miss[[5]]$o_ll)
+```
+
+The last set of models are those which were fit with 5 classes. Similar to the 4 class solution, EM had more local solutions compared to NR, but the two converged to the same maximum LL solution. Again, NR only converged to the maximum LL one time. The two maximum LL solutions differ by .001, but have virtually the same parameter estimates.
+
+
+The table below shows the number of local solutions found by each algorithm for each number of classes. For EM there was a noticeable pattern of increasing unique solutions as the number of classes increased. This results are similar to those of [Hipp and Bauer (2006)](https://doi.org/10.1037/1082-989X.11.1.36) who found that for growth mixture models, the number of local solutions increased with the number of classes fit. That same pattern did not occur for NR. 
+
+```{r}
+table2 <- tribble(
+  ~Classes,     ~LocalSolutionsNR,~LocalSolutionsEM,
+  "2 classes", 1,   1,
+  "3 classes",  16, 10,  
+  "4 classes",  16,  29,  
+  "5 classes",  9, 50,
+)
+kable(table2 , caption = "Number of Local Solutions",booktabs = T)
+```
+
+For NR there is another aspect to consider! As shown below, the convergence rate decreased drastically as the number of classes increased. NR has a stricter convergence criteria compared to EM that relies on the value of the gradient to achieve convergence, hence the low values. At 5 classes only 20 out of 500 iterations converged. This means that if one were to use NR, it would be advisable to increase the number of iterations. 
+
+
+```{r}
+table1 <- tribble(
+  ~Classes,     ~Convergence,
+  "2 classes", 0.99,   
+  "3 classes",  0.66,   
+  "4 classes",  0.14,    
+  "5 classes",  0.04
+)
+kable(table1 , caption = "Convergence rate for NR",booktabs = T)
+```
+
+### Class Enumeration
+
+Choosing the optimal number of classes is a crucial component to latent class analysis that has been well-researched! As I mentioned earlier the process of choosing the number of classes depends on multiple factors, but here I will focus on information-criteria because it is directly tied to the likelihood. Akaike information criterion (AIC) and Bayesian information criterion (BIC) are relative fit indices calculated based on a combination of the the likelihood and other factors. BIC is dependent on the number of parameters estimated and sample size and tends to perform better with larger sample sizes ([Morgan et. al, 2015](https://doi.org/10.1080/10705511.2014.935751)), while AIC is calculated using the number of parameters and not sample size. The best model in terms of these indices is the one with the lowest AIC and BIC values. AIC and BIC values for the models fit in this analysis are shown in the two tables below. 
+
+```{r}
+table5 <- tribble(
+  ~Classes,     ~BICNR,   ~BICEM,
+  "2 classes",  5469.41,  5469.41,
+  "3 classes",  5501.15,  5517.02,
+  "4 classes",  5564.10,  5564.10,
+  "5 classes",  5630.01,  5630.01
+)
+
+kable(table5 , caption = "BIC",booktabs = T)
+```
+
+```{r}
+table6 <- tribble(
+  ~Classes,     ~AICNR,   ~AICEM,
+  "2 classes",  5385.59,  5385.59,
+  "3 classes",  5373.43,  5389.29,
+  "4 classes",  5392.47,  5392.47,
+  "5 classes",  5414.47,  5414.47
+)
+kable(table6 , caption = "AIC",booktabs = T)
+```
+
+Apart from the 3 class model, the BIC and AIC values for each class are the same across the two algorithms. It is only the 3 class model where the AIC and BIC values differ between NR and EM, due to differences in the maximum LL solution reached. For BIC it ultimately does not matter because the optimal number of classes according to both NR and EM is 2. However, for AIC NR points to 3 classes being optimal, while AIC points to 2 classes. This discrepency highlights the importance of algorithm choice! If we only ran NR we may choose 3 classes as our final solution (pending consideration of other criteria), while if we only ran EM we may choose 2 classes. 
+
+## Conclusion
+
+Although this is just a case study using one simulated dataset, I think the results have important implications. The choice of algorithm has been largely overlooked in empirical analysis using latent class models, creating an implicit assumption that the same ("global") likelihood solution will be reached regardless of estimation algorithm used. The results here show that that is not necessarily the case, and the consequences of ignoring algorithm choice can possibly even lead to a different number of classes chosen if we use information-criteria. In an ideal world I would recommend researchers to use two different algorithms (not necessarily NR) and compare the maximum LL results. The interpretation of the classes and the validity of the model rests entirely on the parameter estimates, so it is important to make sure we have explored the parameter space as thouroughly as possible. In the future I would like to repeat this analysis but with empirical data! 
+
+
+Thanks for reading. 
+
+
+
