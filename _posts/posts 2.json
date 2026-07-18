@@ -1,24 +1,5 @@
 [
   {
-    "path": "posts/2026-07-18-modal-solution/",
-    "title": "Does the frequency of the maximum likelihood solution impact estimation quality?",
-    "description": "Inspired by Hipp & Bauer (2006)",
-    "author": [
-      {
-        "name": "Jessica",
-        "url": {}
-      }
-    ],
-    "date": "2026-07-18",
-    "categories": [
-      "research"
-    ],
-    "contents": "\n\n\n\nIntroduction\nBlah..\nTesting\n\n\n\n",
-    "preview": {},
-    "last_modified": "2026-07-18T13:01:03-07:00",
-    "input_file": {}
-  },
-  {
     "path": "posts/2025-11-04-class-enumeration/",
     "title": "Impact of estimation algorithm on class enumeration",
     "description": "A case study",
