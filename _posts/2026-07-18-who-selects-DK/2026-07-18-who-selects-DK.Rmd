@@ -1,0 +1,264 @@
+---
+title: "Who Selects \"I Don't Know\" on an Adolescent Mental Health Help-Seeking Question?"
+description: |
+  Evidence for not treating "I don't know" as missing data
+author:
+  - name: Jessica
+categories:
+  - research
+date: 07-18-2026
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(kableExtra)
+library(dplyr)
+```
+
+```{css, echo=FALSE}
+.table-note {
+  color: #5b6573;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  margin-top: 0.65rem;
+}
+
+.table-responsive {
+  border: 1px solid #e3e7eb;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+table {
+  line-height: 1.35;
+}
+
+table caption {
+  color: #25364a;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: left;
+  margin-bottom: 0.6rem;
+}
+
+table thead th {
+  background-color: #eaf1f7 !important;
+  color: #25364a;
+  border-bottom: 2px solid #6f8fa8 !important;
+  vertical-align: bottom !important;
+}
+
+table tbody td {
+  vertical-align: middle !important;
+}
+```
+
+# Introduction
+
+In many surveys, the option of “I don’t know” is offered to respondents regarding their attitudes or beliefs on the construct of interest. There is extensive debate and research surrounding the quality of a “I don’t know” response, with mixed results (Krosnick et al., 2001).
+
+Survey-methods literature has shown that nonsubstantive responses, including "I don't know," can arise from multiple processes such as lack of effort (Krosnick et al., 2001) and lack of knowledge (Bruine & Carman, 2012). It is possible that offering a no-opinion option will reduce endorsement of opinions by respondents with truly no opinion, but it is also possible that respondents with an opinion will choose the no-opinion option due to easier cognitive load.
+
+On the other hand, previous research has suggested that inclusion of a “I don’t know” response option is meaningful for understanding the construct of interest. In a study about cancer risk, individuals who select “I don’t know” about their own risk for cancer were found to have worse health outcomes and knowledge about their health (Waters et al, 2016). This suggests that selection of this response option can potentially serve as an indicator for individuals who may benefit from educational interventions. In another study about parent perception of children’s risk of asthma, the authors suggest those who selected “I don’t know” were likely to not be satisficers, but rather a unique subset of the sample that would be overlooked under a more restrictive response option design (Waters et al., 2023).
+
+In health surveys, this means that treating "I don't know" as simple missingness can erase a psychologically meaningful subgroup.
+
+In the context of youth mental-health, uncertainty about responses can reflect a myriad of challenges in conceptualizing mental health and help-seeking among adolescents.
+
+Adolescents may recognize distress without knowing whether it constitutes a need for counseling, what formal help would involve, or where to begin. School-based mental health climate, norms around talking about mental health, and perceived access points may shape whether young people can translate distress into a clear help-seeking judgment.
+
+A third literature concerns response quality. Youth surveys commonly include honesty or attention indicators because careless responding can distort estimates. The central analytic problem is therefore not whether careless responders exist; they do. The more interesting question is whether the "I don't know" category contains only careless responders or also students whose uncertainty reflects a meaningful gap in mental health literacy, perceived need, or help-navigation knowledge.
+
+This study therefore treats "I don't know" not as a nuisance response to be automatically removed, but as a potentially informative outcome. Our research question is thus whether students who select this response differ systematically from students who give a definite “Yes” or “No” response to a question about wanting to talk to a counselor or therapist.
+
+# Methods
+
+## Data Source and Analytic Sample
+
+Data came from the 2024-25 California Healthy Kids. The analysis was restricted to students in grades 7, 9, and 11 who took the Behavioral Health Module, and had nonmissing responses to the counseling-need item. The model sample used complete-case analysis across the outcome and all covariates, resulting in a sample of 53,763 respondents.
+
+## Outcome
+
+The dependent variable was a binary indicator for selecting "I don't know" when asked, "In the past year, did you want to talk to a counselor or therapist about feeling very sad, stressed, lonely, or depressed?" The original response options were No, Yes, and I don't know. The logistic model compared students who selected "I don't know" with students who selected either No or Yes.
+
+## Predictors and Coding
+
+Demographic predictors included grade, gender, LGBTQ+ identity, race/ethnicity, parent/guardian college completion, and whether a language other than English was spoken most of the time at home. Grade 7, male gender, White race/ethnicity, and non-LGBTQ+ status served as reference groups where applicable.
+
+Gender was coded as male, female, and nonbinary/transgender/other gender based on the survey's sex and gender identity items. LGBTQ+ identity was coded as a binary indicator based on gender identity and sexual orientation responses.
+
+Race/ethnicity was coded from seven ethnicity indicators. Students selecting exactly one category were assigned to that category; students selecting more than one category were coded as multiracial. White students were the reference group.
+
+Mental-health indicators included seriously considering attempting suicide in the past 12 months, feeling so sad or hopeless almost every day for two weeks or more that the student stopped usual activities, purposely hurting oneself in the past 12 months, and loneliness frequency. The sad and suicide items correspond to the screenshot labels for the past-12-month sadness/hopelessness and suicide-consideration questions.
+
+School mental-health climate and literacy indicators included knowing where to go or whom to contact at school for help when very sad, stressed, lonely, or depressed; whether people at school talk openly about mental health; and whether the school encourages students to take care of their mental health. Higher values indicate stronger agreement.
+
+Potential barriers and uncertainty indicators included whether the student would be afraid to get help, whether the student would not know what to do, and self-reported honesty in answering the survey. The honesty item ranged from "all of them" to "hardly any," with higher values indicating lower reported honesty.
+
+## Statistical Analysis
+
+Four nested logistic regression models were fit. Model 1 included demographic characteristics and the honesty item. Model 2 added mental-health indicators. Model 3 added school mental-health climate indicators. Model 4, the primary model, added home language, school help-navigation knowledge, school mental-health climate, fear of getting help, and not knowing what to do. Odds ratios and 95% confidence intervals were calculated from the final model.
+
+# Results
+
+In the complete-case analytic sample, 4,530 students selected "I don't know” (8.4%).
+
+Descriptively, the "I don't know" group included more 7th graders, more students reporting less honest survey responding, more students reporting sadness/hopelessness, self-harm, loneliness, fear of getting help, and not knowing what to do. They also had lower strong agreement that they knew where or whom to contact at school for help.
+
+```{r table-1, results='asis'}
+table_1_data <- tibble::tribble(
+  ~Variable, ~Level, ~Overall, ~I_don_t_know, ~No_or_Yes,
+  "Grade", "7", "17,002 (31.6%)", "1,729 (38.2%)", "15,273 (31.0%)",
+  "", "9", "19,291 (35.9%)", "1,599 (35.3%)", "17,692 (35.9%)",
+  "", "11", "17,470 (32.5%)", "1,202 (26.5%)", "16,268 (33.0%)",
+  "Gender", "Male", "25,433 (47.3%)", "1,756 (38.8%)", "23,677 (48.1%)",
+  "", "Female", "26,688 (49.6%)", "2,603 (57.5%)", "24,085 (48.9%)",
+  "", "Nonbinary/transgender/other", "1,642 (3.1%)", "171 (3.8%)", "1,471 (3.0%)",
+  "LGBTQ+ identity", "Yes", "8,307 (15.5%)", "897 (19.8%)", "7,410 (15.1%)",
+  "Race/ethnicity", "White", "12,334 (22.9%)", "945 (20.9%)", "11,389 (23.1%)",
+  "", "Asian Asian American", "9,760 (18.2%)", "742 (16.4%)", "9,018 (18.3%)",
+  "", "Black African American", "1,609 (3.0%)", "155 (3.4%)", "1,454 (3.0%)",
+  "", "Hispanic Latinx", "15,073 (28.0%)", "1,371 (30.3%)", "13,702 (27.8%)",
+  "", "Native Hawaiian Pacific Islander", "230 (0.4%)", "19 (0.4%)", "211 (0.4%)",
+  "", "American Indian Alaska Native", "411 (0.8%)", "31 (0.7%)", "380 (0.8%)",
+  "", "Something else", "1,776 (3.3%)", "189 (4.2%)", "1,587 (3.2%)",
+  "", "Multiracial", "12,570 (23.4%)", "1,078 (23.8%)", "11,492 (23.3%)",
+  "At least one parent/guardian completed college", "Yes", "32,396 (60.3%)", "2,537 (56.0%)", "29,859 (60.6%)",
+  "Language other than English spoken most at home", "Yes", "16,600 (30.9%)", "1,467 (32.4%)", "15,133 (30.7%)",
+  "Survey honesty", "All questions answered honestly", "42,196 (78.5%)", "3,162 (69.8%)", "39,034 (79.3%)",
+  "", "Most", "10,168 (18.9%)", "1,153 (25.5%)", "9,015 (18.3%)",
+  "", "Only some", "948 (1.8%)", "146 (3.2%)", "802 (1.6%)",
+  "", "Hardly any", "451 (0.8%)", "69 (1.5%)", "382 (0.8%)",
+  "Seriously considered attempting suicide in past 12 months", "Yes", "5,996 (11.2%)", "589 (13.0%)", "5,407 (11.0%)",
+  "Felt sad/hopeless for 2+ weeks in past 12 months", "Yes", "14,406 (26.8%)", "1,591 (35.1%)", "12,815 (26.0%)",
+  "Purposely hurt self in past 12 months", "Yes", "8,058 (15.0%)", "947 (20.9%)", "7,111 (14.4%)",
+  "How often student feels lonely", "Never", "16,616 (30.9%)", "1,076 (23.8%)", "15,540 (31.6%)",
+  "", "Rarely", "15,957 (29.7%)", "1,210 (26.7%)", "14,747 (30.0%)",
+  "", "Sometimes", "13,956 (26.0%)", "1,509 (33.3%)", "12,447 (25.3%)",
+  "", "Often", "7,234 (13.5%)", "735 (16.2%)", "6,499 (13.2%)",
+  "Knows where/who to contact at school for help", "Strongly disagree", "6,741 (12.5%)", "691 (15.3%)", "6,050 (12.3%)",
+  "", "Disagree", "8,340 (15.5%)", "915 (20.2%)", "7,425 (15.1%)",
+  "", "Agree", "26,800 (49.8%)", "2,230 (49.2%)", "24,570 (49.9%)",
+  "", "Strongly agree", "11,882 (22.1%)", "694 (15.3%)", "11,188 (22.7%)",
+  "People at school talk openly about mental health", "Strongly disagree", "8,886 (16.5%)", "856 (18.9%)", "8,030 (16.3%)",
+  "", "Disagree", "14,813 (27.6%)", "1,364 (30.1%)", "13,449 (27.3%)",
+  "", "Agree", "22,649 (42.1%)", "1,866 (41.2%)", "20,783 (42.2%)",
+  "", "Strongly agree", "7,415 (13.8%)", "444 (9.8%)", "6,971 (14.2%)",
+  "School encourages students to care for mental health", "Strongly disagree", "4,906 (9.1%)", "508 (11.2%)", "4,398 (8.9%)",
+  "", "Disagree", "5,703 (10.6%)", "592 (13.1%)", "5,111 (10.4%)",
+  "", "Agree", "28,912 (53.8%)", "2,483 (54.8%)", "26,429 (53.7%)",
+  "", "Strongly agree", "14,242 (26.5%)", "947 (20.9%)", "13,295 (27.0%)",
+  "Would be afraid to get help if sad/stressed/lonely/depressed", "Yes", "9,941 (18.5%)", "1,193 (26.3%)", "8,748 (17.8%)",
+  "Would not know what to do if sad/stressed/lonely/depressed", "Yes", "11,216 (20.9%)", "1,516 (33.5%)", "9,700 (19.7%)"
+)
+
+table_1_data %>%
+  kbl(caption = "Table 1. Descriptive characteristics of sample by desire to seek mental health help", booktabs = TRUE, align = c("l", "l", "c", "c", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = TRUE, font_size = 13, position = "left"
+  ) %>%
+  column_spec(1, width = "27%", bold = TRUE) %>%
+  column_spec(2, width = "23%") %>%
+  column_spec(3:5, width = "16.5%") %>%
+  collapse_rows(columns = 1, valign = "top") %>%
+  scroll_box(width = "100%", height = "650px")
+```
+
+<p class="table-note">Note. Percentages are column percentages within nonmissing complete-case analytic sample categories. The outcome column contrasts students who selected "I don't know" with students who selected No or Yes.</p>
+
+In the adjusted logistic model, students in grades 9 and 11 had lower odds of selecting "I don't know" than students in grade 7, consistent with younger students being more likely to report uncertainty. Lower self-reported survey honesty was associated with higher odds of selecting "I don't know," supporting the interpretation that some portion of the group may reflect lower-quality or careless responding.
+
+At the same time, several mental-health indicators were also associated with "I don't know" responding. Sadness/hopelessness, self-harm history, and loneliness were associated with higher odds of selecting "I don't know." Seriously considering suicide was associated with lower odds, suggesting that students with the most severe or clearly recognized distress may be less uncertain about whether they wanted counseling or therapy.
+
+Mental-health literacy and school climate also mattered. Knowing where or whom to contact at school for help and perceiving that the school encourages students to take care of their mental health were associated with lower odds of selecting "I don't know." Not knowing what to do was the strongest predictor in the final model.
+
+```{r table-2, results='asis'}
+table_2_data <- tibble::tribble(
+  ~Predictor, ~OR, ~X95_CI, ~p,
+  "Intercept", "0.07", "0.06, 0.08", "<0.001",
+  "Language other than English spoken most at home", "1.00", "0.93, 1.08", "0.947",
+  "Grade 9 vs grade 7", "0.80", "0.74, 0.86", "<0.001",
+  "Grade 11 vs grade 7", "0.66", "0.60, 0.71", "<0.001",
+  "Female vs male", "1.30", "1.22, 1.39", "<0.001",
+  "Nonbinary/transgender/other gender vs male", "1.08", "0.89, 1.30", "0.441",
+  "LGBTQ+ vs non-LGBTQ+", "1.17", "1.07, 1.28", "<0.001",
+  "Asian/Asian American vs White", "0.95", "0.85, 1.06", "0.340",
+  "Black/African American vs White", "1.18", "0.99, 1.42", "0.066",
+  "Hispanic/Latinx vs White", "1.03", "0.94, 1.14", "0.513",
+  "Native Hawaiian/Pacific Islander vs White", "1.02", "0.61, 1.60", "0.950",
+  "American Indian/Alaska Native vs White", "0.90", "0.61, 1.29", "0.593",
+  "Something else vs White", "1.27", "1.07, 1.50", "0.005",
+  "Multiracial vs White", "1.01", "0.92, 1.10", "0.916",
+  "Parent/guardian completed college", "0.89", "0.83, 0.96", "0.002",
+  "Lower survey honesty", "1.32", "1.25, 1.39", "<0.001",
+  "Seriously considered attempting suicide", "0.69", "0.62, 0.77", "<0.001",
+  "Sad/hopeless for 2+ weeks", "1.12", "1.03, 1.22", "0.006",
+  "Purposely hurt self", "1.15", "1.05, 1.26", "0.004",
+  "Loneliness", "1.07", "1.03, 1.11", "<0.001",
+  "Knows where/who to contact at school for help", "0.93", "0.89, 0.98", "0.002",
+  "People at school talk openly about mental health", "1.04", "0.99, 1.09", "0.093",
+  "School encourages students to care for mental health", "0.93", "0.89, 0.98", "0.003",
+  "Would be afraid to get help", "1.18", "1.09, 1.28", "<0.001",
+  "Would not know what to do", "1.60", "1.48, 1.72", "<0.001"
+)
+
+table_2_data %>%
+  kbl(caption = "Table 2. Adjusted odds ratios predicting selection of \"I don't know\" on wanting to talk to a counselor in the past year", booktabs = TRUE, align = c("l", "c", "c", "c")) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = TRUE, font_size = 13, position = "left"
+  ) %>%
+  column_spec(1, width = "58%", bold = TRUE) %>%
+  column_spec(2, width = "11%") %>%
+  column_spec(3, width = "18%") %>%
+  column_spec(4, width = "13%") %>%
+  scroll_box(width = "100%", height = "650px")
+```
+
+<p class="table-note">Note. OR = odds ratio. CI = confidence interval. The model predicts selecting "I don't know" versus selecting No or Yes. Reference groups include grade 7, male gender, White race/ethnicity, and non-LGBTQ+ status.</p>
+
+# Discussion
+
+These findings suggest that "I don't know" responses to adolescent mental-health help-seeking questions are not simply noise. The association with lower self-reported honesty indicates that careless or low-quality responding is present in this category. However, out of respondents reporting “I don’t know”, less than 5% reported answering only some or hardly any of the CHKS survey questions truthfully.
+
+On the other hand, predictors related to student mental health were associated with “I don’t know” response to wanting to seek formal mental health help. Experiences of sadness/hopelessness, loneliness, and self-harm were associated with higher odds of reporting “I don’t know”. Students with these experiences are often the target of mental health interventions and support.
+
+Results from this study also show that mental health literacy places a role in adolescents’ response to wanting to seek help. Endorsing barriers such as not knowing what to do and being afraid to get help if they were sad increased adolescents’ odds of an “I don’t know response”, which potentially reflects a lack of knowledge on how to manage distressing emotions. Not knowing whether one wants to talk to a counselor may signal an adolescents’ lack of confidence in understanding what professional help may look like. A review of studies on youth mental health barriers found a limited understanding of what types of problems professionals such as counselors can provide (Renwick et al., 2022).
+
+It is also possible that stigma, a widely reported barrier for getting mental health help (Radez et al., 2021), may lead youth to question and hold back their desires for professionall help.
+
+The contrast between suicidal ideation and other distress indicators is substantively important. Students who seriously considered suicide had lower odds of selecting "I don't know," possibly because severe distress produces a clearer recognition of need or a more definite view of counseling. In contrast, students with sadness, loneliness, or self-harm may be struggling but less certain how to label their need, whether counseling is appropriate, or what first step to take.
+
+The school-climate findings point toward intervention. Students who know where or whom to contact at school and who perceive that their school encourages mental-health care are less likely to be unsure. This implies that mental health literacy should include concrete navigation skills, not only symptom recognition: where to go, whom to contact, what counseling is for, and what happens after reaching out.
+
+Future research should investigate whether "I don't know" responding predicts differential engagement in prevention, screening, referral, or counseling behaviors. Methodological work is also needed to distinguish careless responders from students whose "I don't know" reflects meaningful uncertainty, limited mental health literacy, stigma, or unclear perceived need.
+
+# Limitations and Next Steps
+
+- The analysis used complete-case data; future versions could describe missingness and test sensitivity to alternative handling of missing covariates.
+
+- The outcome combines students who selected No or Yes into the comparison group; a multinomial model could separately compare I don't know with No and with Yes.
+
+- The honesty item helps identify response-quality concerns but cannot fully separate careless responding from genuine uncertainty.
+
+# Measures Appendix 
+
+Loneliness was measured with the item, "How often do you feel lonely?" Response options were never, rarely, sometimes, and often.
+
+Self-harm was measured by asking how many times during the past 12 months the student did something to purposely hurt themselves, such as cutting, scratching, or burning themselves.
+
+School help-navigation knowledge was measured by agreement with the statement, "I know where to go or who to contact at school for help when I am very sad, stressed, lonely, or depressed."
+
+Open school mental-health climate was measured by agreement with the statement, "People at my school talk openly about mental health."
+
+Encouraging school mental-health climate was measured by agreement with the statement, "My school encourages students to take care of their mental health."
+
+Help-seeking barriers included whether students said they would be afraid to get help or would not know what to do if they were feeling very sad, stressed, lonely, or depressed.
+
+The outcome item asked, "In the past year, did you want to talk to a counselor or therapist about feeling very sad, stressed, lonely, or depressed?"
+
+Survey honesty was measured with the item, "How many questions in the survey did you answer honestly?" Response options were all of them, most of them, only some of them, and hardly any.

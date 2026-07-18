@@ -23,9 +23,17 @@ df <- df %>%
 
 ### Introduction
 ```{r}
-df %>% group_by(k,me,nclass) %>%
+df %>% group_by(k,nclass) %>%
+  filter(me == "high me") %>%
   summarise(maxismode = mean(maxismode,na.rm = T),
-            converge = mean(converge_n,na.rm = T))
+            converge = round(mean(converge_n,na.rm = T)/500,2)) %>%
+  arrange(nclass)
+  
+  df %>% group_by(k,nclass) %>%
+  filter(me == "low me") %>%
+  summarise(maxismode = mean(maxismode,na.rm = T),
+            converge = round(mean(converge_n,na.rm = T)/500,2)) %>%
+    arrange(nclass)
 ```
 
 
