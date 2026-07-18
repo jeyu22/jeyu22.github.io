@@ -1,0 +1,28 @@
+---
+title: "Does the frequency of the maximum likelihood solution impact estimation quality?"
+description: |
+  Inspired by Hipp & Bauer (2006)
+author:
+  - name: Jessica
+categories:
+  - research
+date: 07-18-2026
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r, echo = F}
+knitr::opts_chunk$set(echo =F, message = F, warning = F)
+library(kableExtra)
+library(tidyverse)
+#df <- readRDS("./all_simulations0709.Rds")
+```
+
+### Introduction
+Blah..
+
+
+### Testing
+
+
