@@ -15,13 +15,140 @@ output:
 ```{r, echo = F}
 knitr::opts_chunk$set(echo =F, message = F, warning = F)
 library(kableExtra)
+library(kable)
 library(tidyverse)
+library(knitr)
 df <- readRDS("./combined.Rds")
 df <- df %>%
   mutate(uniq_pec = uniq/converge_n)
 ```
 
 ### Introduction
+
+```{r}
+simulation_conditions <- tribble(
+  ~Simulation, ~NumberItems, ~NumberClasses, ~MeasurementError,
+  ~ClassPrevalence, ~SampleSize,
+
+   1,  "7 items",  "3 classes", "High", "Equal",   1000,
+   2,  "7 items",  "3 classes", "High", "Equal",    400,
+   3,  "7 items",  "3 classes", "High", "Unequal", 1000,
+   4,  "7 items",  "3 classes", "High", "Unequal",  400,
+   5,  "7 items",  "3 classes", "Low",  "Unequal", 1000,
+   6,  "7 items",  "3 classes", "Low",  "Unequal",  400,
+   7,  "7 items",  "3 classes", "Low",  "Equal",   1000,
+   8,  "7 items",  "3 classes", "Low",  "Equal",    400,
+
+   9,  "7 items",  "5 classes", "High", "Equal",   1000,
+  10,  "7 items",  "5 classes", "High", "Equal",    400,
+  11,  "7 items",  "5 classes", "High", "Unequal", 1000,
+  12,  "7 items",  "5 classes", "High", "Unequal",  400,
+  13,  "7 items",  "5 classes", "Low",  "Unequal", 1000,
+  14,  "7 items",  "5 classes", "Low",  "Unequal",  400,
+  15,  "7 items",  "5 classes", "Low",  "Equal",   1000,
+  16,  "7 items",  "5 classes", "Low",  "Equal",    400,
+
+  17, "10 items", "3 classes", "High", "Equal",   1000,
+  18, "10 items", "3 classes", "High", "Equal",    400,
+  19, "10 items", "3 classes", "High", "Unequal", 1000,
+  20, "10 items", "3 classes", "High", "Unequal",  400,
+  21, "10 items", "3 classes", "Low",  "Unequal", 1000,
+  22, "10 items", "3 classes", "Low",  "Unequal",  400,
+  23, "10 items", "3 classes", "Low",  "Equal",   1000,
+  24, "10 items", "3 classes", "Low",  "Equal",    400,
+
+  25, "10 items", "5 classes", "High", "Equal",   1000,
+  26, "10 items", "5 classes", "High", "Equal",    400,
+  27, "10 items", "5 classes", "High", "Unequal", 1000,
+  28, "10 items", "5 classes", "High", "Unequal",  400,
+  29, "10 items", "5 classes", "Low",  "Unequal", 1000,
+  30, "10 items", "5 classes", "Low",  "Unequal",  400,
+  31, "10 items", "5 classes", "Low",  "Equal",   1000,
+  32, "10 items", "5 classes", "Low",  "Equal",    400
+)
+
+simulation_factors <- tribble(
+  ~SimulationFactor,             ~Levels,
+  "Number of items",             "7 items; 10 items",
+  "Number of latent classes",    "3 classes; 5 classes",
+  "Measurement error",           "Low; High",
+  "Latent class prevalence",     "Equal; Unequal",
+  "Sample size",                 "400; 1,000"
+)
+
+kable(
+  simulation_factors,
+  caption = "Factors Manipulated Across Simulation Conditions",
+  col.names = c("Simulation factor", "Levels"),
+  booktabs = TRUE,
+  align = c("l", "l")
+) |>
+  kable_styling(full_width = FALSE)
+```
+```{r, include = F}
+simulation_conditions <- tribble(
+  ~Simulation, ~NumberItems, ~NumberClasses, ~MeasurementError,
+  ~ClassPrevalence, ~SampleSize,
+
+   1,  "7 items",  "3 classes", "High", "Equal",   1000,
+   2,  "7 items",  "3 classes", "High", "Equal",    400,
+   3,  "7 items",  "3 classes", "High", "Unequal", 1000,
+   4,  "7 items",  "3 classes", "High", "Unequal",  400,
+   5,  "7 items",  "3 classes", "Low",  "Unequal", 1000,
+   6,  "7 items",  "3 classes", "Low",  "Unequal",  400,
+   7,  "7 items",  "3 classes", "Low",  "Equal",   1000,
+   8,  "7 items",  "3 classes", "Low",  "Equal",    400,
+
+   9,  "7 items",  "5 classes", "High", "Equal",   1000,
+  10,  "7 items",  "5 classes", "High", "Equal",    400,
+  11,  "7 items",  "5 classes", "High", "Unequal", 1000,
+  12,  "7 items",  "5 classes", "High", "Unequal",  400,
+  13,  "7 items",  "5 classes", "Low",  "Unequal", 1000,
+  14,  "7 items",  "5 classes", "Low",  "Unequal",  400,
+  15,  "7 items",  "5 classes", "Low",  "Equal",   1000,
+  16,  "7 items",  "5 classes", "Low",  "Equal",    400,
+
+  17, "10 items", "3 classes", "High", "Equal",   1000,
+  18, "10 items", "3 classes", "High", "Equal",    400,
+  19, "10 items", "3 classes", "High", "Unequal", 1000,
+  20, "10 items", "3 classes", "High", "Unequal",  400,
+  21, "10 items", "3 classes", "Low",  "Unequal", 1000,
+  22, "10 items", "3 classes", "Low",  "Unequal",  400,
+  23, "10 items", "3 classes", "Low",  "Equal",   1000,
+  24, "10 items", "3 classes", "Low",  "Equal",    400,
+
+  25, "10 items", "5 classes", "High", "Equal",   1000,
+  26, "10 items", "5 classes", "High", "Equal",    400,
+  27, "10 items", "5 classes", "High", "Unequal", 1000,
+  28, "10 items", "5 classes", "High", "Unequal",  400,
+  29, "10 items", "5 classes", "Low",  "Unequal", 1000,
+  30, "10 items", "5 classes", "Low",  "Unequal",  400,
+  31, "10 items", "5 classes", "Low",  "Equal",   1000,
+  32, "10 items", "5 classes", "Low",  "Equal",    400
+)
+
+kable(
+  simulation_conditions,
+  caption = "Simulation Conditions",
+  col.names = c(
+    "Simulation",
+    "Number of items",
+    "Number of classes",
+    "Measurement error",
+    "Class prevalence",
+    "Sample size"
+  ),
+  booktabs = TRUE,
+  align = c("r", "l", "l", "l", "l", "r")
+) |>
+  kable_styling(
+    full_width = FALSE,
+    bootstrap_options = c("striped", "condensed")
+  ) |>
+  pack_rows("7-item conditions", 1, 16) |>
+  pack_rows("10-item conditions", 17, 32)
+```
+
 ```{r}
 df %>% group_by(k,nclass) %>%
   filter(me == "high me") %>%
@@ -36,6 +163,305 @@ df %>% group_by(k,nclass) %>%
     arrange(nclass)
 ```
 
+```{r}
+df %>% group_by(k,nclass) %>%
+  filter(me == "high me") %>%
+  summarise(maxismode = mean(maxismode,na.rm = T),
+            converge = round(mean(converge_n,na.rm = T)/500,2)) %>%
+  arrange(nclass)
+  
+  df %>% group_by(k,nclass) %>%
+  filter(me == "low me") %>%
+  summarise(maxismode = mean(maxismode,na.rm = T),
+            converge = round(mean(converge_n,na.rm = T)/500,2)) %>%
+    arrange(nclass)
+```
+
+
+```{r}
+plot_dat <- df |>
+  mutate(
+    sample_size = factor(
+      ss,
+      levels = c("small", "large"),
+      labels = c("400", "1,000")
+    ),
+    measurement_error = factor(
+      me,
+      levels = c("low me", "high me"),
+      labels = c("Low", "High")
+    ),
+    prevalence = factor(
+      prev,
+      levels = c("equal", "unequal"),
+      labels = c("Balanced", "Unbalanced")
+    ),
+    true_classes = factor(
+      nclass,
+      levels = c("3", "5"),
+      labels = c("3 classes", "5 classes")
+    ),
+    items = factor(
+      nitem,
+      levels = c("7", "10"),
+      labels = c("7 items", "10 items")
+    ),
+    fitted_model = factor(
+      k,
+      levels = c("k", "k-1"),
+      labels = c("K", "K−1")
+    )
+  )
+
+maxismode_summary <- plot_dat |>
+  group_by(
+    fitted_model,
+    sample_size,
+    measurement_error,
+    prevalence,
+    true_classes,
+    items
+  ) |>
+  summarise(
+    n_total = n(),
+    n_defined = sum(!is.na(maxismode)),
+    n_missing = sum(is.na(maxismode)),
+    n_maxismode = sum(maxismode, na.rm = TRUE),
+    maxismode_prop = mean(maxismode, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+maxismode_summary <- maxismode_summary |>
+  mutate(
+    ci_lower = if_else(
+      n_maxismode == 0,
+      0,
+      qbeta(
+        0.025,
+        n_maxismode,
+        n_defined - n_maxismode + 1
+      )
+    ),
+    ci_upper = if_else(
+      n_maxismode == n_defined,
+      1,
+      qbeta(
+        0.975,
+        n_maxismode + 1,
+        n_defined - n_maxismode
+      )
+    )
+  )
+
+maxismode_summary
+library(scales)
+p <- ggplot(
+  maxismode_summary,
+  aes(
+    x = sample_size,
+    y = maxismode_prop,
+    color = measurement_error,
+    group = interaction(measurement_error, prevalence)
+  )
+) +
+  geom_line(
+    aes(linetype = prevalence),
+    linewidth = 0.7,
+    position = position_dodge(width = 0.12)
+  ) +
+  geom_errorbar(
+    aes(
+      ymin = ci_lower,
+      ymax = ci_upper,
+      linetype = prevalence
+    ),
+    width = 0.06,
+    linewidth = 0.45,
+    position = position_dodge(width = 0.12),
+    show.legend = FALSE
+  ) +
+  geom_point(
+    aes(shape = prevalence),
+    size = 2.7,
+    position = position_dodge(width = 0.12)
+  ) +
+  facet_grid(
+    rows = vars(fitted_model),
+    cols = vars(true_classes, items)
+  ) +
+  scale_y_continuous(
+    limits = c(0, 1),
+    breaks = seq(0, 1, 0.2),
+    labels = label_percent()
+  ) +
+  scale_color_manual(
+    values = c("Low" = "#0072B2", "High" = "#D55E00")
+  ) +
+  labs(
+    x = "Sample size",
+    y = "Proportion where maximum is the modal solution",
+    color = "Measurement error",
+    shape = "Class prevalence",
+    linetype = "Class prevalence"
+  ) +
+  theme_bw(base_size = 11) +
+  theme(
+    panel.grid.minor = element_blank(),
+    legend.position = "bottom",
+    strip.background.y = element_rect(fill = "grey90"),
+    strip.text.y = element_text(face = "bold"),
+    panel.spacing = unit(0.8, "lines")
+  )
+
+p
+```
+```{r}
+paired_dat <- plot_dat |>
+  mutate(
+    model_key = case_when(
+      fitted_model == "K"   ~ "K",
+      fitted_model == "K−1" ~ "Km1"
+    )
+  ) |>
+  select(
+    sim_number,
+    dataset,
+    sample_size,
+    measurement_error,
+    prevalence,
+    true_classes,
+    items,
+    model_key,
+    maxismode
+  ) |>
+  pivot_wider(
+    names_from = model_key,
+    values_from = maxismode,
+    names_prefix = "maxismode_"
+  ) |>
+  mutate(
+    pair_defined = !is.na(maxismode_K) &
+      !is.na(maxismode_Km1),
+
+    k_false_km1_true = case_when(
+      pair_defined ~ !maxismode_K & maxismode_Km1,
+      TRUE ~ NA
+    )
+  )
+paired_summary <- paired_dat |>
+  group_by(
+    sample_size,
+    measurement_error,
+    prevalence,
+    true_classes,
+    items
+  ) |>
+  summarise(
+    n_total_pairs = n(),
+    n_defined_pairs = sum(pair_defined),
+    n_missing_pairs = sum(!pair_defined),
+
+    n_k_false_km1_true = sum(
+      k_false_km1_true,
+      na.rm = TRUE
+    ),
+
+    prop_k_false_km1_true = mean(
+      k_false_km1_true,
+      na.rm = TRUE
+    ),
+
+    .groups = "drop"
+  )
+paired_summary <- paired_summary |>
+  mutate(
+    ci_lower = case_when(
+      n_defined_pairs == 0 ~ NA_real_,
+      n_k_false_km1_true == 0 ~ 0,
+      TRUE ~ qbeta(
+        0.025,
+        n_k_false_km1_true,
+        n_defined_pairs - n_k_false_km1_true + 1
+      )
+    ),
+
+    ci_upper = case_when(
+      n_defined_pairs == 0 ~ NA_real_,
+      n_k_false_km1_true == n_defined_pairs ~ 1,
+      TRUE ~ qbeta(
+        0.975,
+        n_k_false_km1_true + 1,
+        n_defined_pairs - n_k_false_km1_true
+      )
+    )
+  )
+
+p_paired <- ggplot(
+  paired_summary,
+  aes(
+    x = sample_size,
+    y = prop_k_false_km1_true,
+    color = measurement_error,
+    group = interaction(
+      measurement_error,
+      prevalence
+    )
+  )
+) +
+  geom_line(
+    aes(linetype = prevalence),
+    linewidth = 0.7,
+    position = position_dodge(width = 0.12)
+  ) +
+  geom_errorbar(
+    aes(
+      ymin = ci_lower,
+      ymax = ci_upper,
+      linetype = prevalence
+    ),
+    width = 0.06,
+    linewidth = 0.45,
+    position = position_dodge(width = 0.12),
+    show.legend = FALSE
+  ) +
+  geom_point(
+    aes(shape = prevalence),
+    size = 2.7,
+    position = position_dodge(width = 0.12)
+  ) +
+  facet_grid(
+    cols = vars(true_classes, items)
+  ) +
+  scale_y_continuous(
+    limits = c(0, 1),
+    breaks = seq(0, 1, 0.2),
+    labels = label_percent()
+  ) +
+  scale_color_manual(
+    values = c(
+      "Low" = "#0072B2",
+      "High" = "#D55E00"
+    )
+  ) +
+  labs(
+    x = "Sample size",
+    y = paste0(
+      "Proportion of datasets where K is not modal\n",
+      "but K−1 is modal"
+    ),
+    color = "Measurement error",
+    shape = "Class prevalence",
+    linetype = "Class prevalence"
+  ) +
+  theme_bw(base_size = 11) +
+  theme(
+    panel.grid.minor = element_blank(),
+    legend.position = "bottom",
+    panel.spacing = unit(0.8, "lines")
+  )
+
+p_paired
+```
 
 ### Testing
 

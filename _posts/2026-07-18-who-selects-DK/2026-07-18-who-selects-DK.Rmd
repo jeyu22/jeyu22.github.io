@@ -78,11 +78,11 @@ This study therefore treats "I don't know" not as a nuisance response to be auto
 
 ## Data Source and Analytic Sample
 
-Data came from the 2024-25 California Healthy Kids. The analysis was restricted to students in grades 7, 9, and 11 who took the Behavioral Health Module, and had nonmissing responses to the counseling-need item. The model sample used complete-case analysis across the outcome and all covariates, resulting in a sample of 53,763 respondents.
+Data are from a statewide survey of secondary school students collected in 2024-25. The analysis was restricted to students in grades 7, 9, and 11 who took a specific module related to mental health, and had nonmissing responses to the counseling-need item. The model sample used complete-case analysis across the outcome and all covariates, resulting in a sample of 53,763 respondents.
 
 ## Outcome
 
-The dependent variable was a binary indicator for selecting "I don't know" when asked, "In the past year, did you want to talk to a counselor or therapist about feeling very sad, stressed, lonely, or depressed?" The original response options were No, Yes, and I don't know. The logistic model compared students who selected "I don't know" with students who selected either No or Yes.
+The dependent variable was a binary indicator for selecting "I don't know" when asked, "In the past year, did you want to talk to a counselor about feeling very sad, stressed, lonely, or depressed?" The original response options were No, Yes, and I don't know. The logistic model compared students who selected "I don't know" with students who selected either No or Yes.
 
 ## Predictors and Coding
 
@@ -223,7 +223,7 @@ table_2_data %>%
 
 # Discussion
 
-These findings suggest that "I don't know" responses to adolescent mental-health help-seeking questions are not simply noise. The association with lower self-reported honesty indicates that careless or low-quality responding is present in this category. However, out of respondents reporting “I don’t know”, less than 5% reported answering only some or hardly any of the CHKS survey questions truthfully.
+These findings suggest that "I don't know" responses to adolescent mental-health help-seeking questions are not simply noise. The association with lower self-reported honesty indicates that careless or low-quality responding is present in this category. However, out of respondents reporting “I don’t know”, less than 5% reported answering only some or hardly any of the survey questions truthfully.
 
 On the other hand, predictors related to student mental health were associated with “I don’t know” response to wanting to seek formal mental health help. Experiences of sadness/hopelessness, loneliness, and self-harm were associated with higher odds of reporting “I don’t know”. Students with these experiences are often the target of mental health interventions and support.
 
