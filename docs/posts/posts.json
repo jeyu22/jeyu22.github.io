@@ -13,9 +13,9 @@
     "categories": [
       "research"
     ],
-    "contents": "\n\n\n\nIntroduction\nBlah..\nTesting\n\n\n\n",
+    "contents": "\n\n\n\nIntroduction\n\n# A tibble: 8 × 5\n# Groups:   k, me [4]\n  k     me      nclass maxismode converge\n  <chr> <chr>   <chr>      <dbl>    <dbl>\n1 k     high me 3          0.705     462.\n2 k     high me 5          0.38      418.\n3 k     low me  3          0.998     500.\n4 k     low me  5          0.6       479.\n5 k-1   high me 3          0.930     491.\n6 k-1   high me 5          0.56      447.\n7 k-1   low me  3          1         500 \n8 k-1   low me  5          0.975     499.\n\nTesting\n\n\n\n",
     "preview": {},
-    "last_modified": "2026-07-18T13:01:03-07:00",
+    "last_modified": "2026-07-18T13:21:08-07:00",
     "input_file": {}
   },
   {

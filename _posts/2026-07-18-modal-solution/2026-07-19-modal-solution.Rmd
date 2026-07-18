@@ -16,11 +16,17 @@ output:
 knitr::opts_chunk$set(echo =F, message = F, warning = F)
 library(kableExtra)
 library(tidyverse)
-#df <- readRDS("./all_simulations0709.Rds")
+df <- readRDS("./combined.Rds")
+df <- df %>%
+  mutate(uniq_pec = uniq/converge_n)
 ```
 
 ### Introduction
-Blah..
+```{r}
+df %>% group_by(k,me,nclass) %>%
+  summarise(maxismode = mean(maxismode,na.rm = T),
+            converge = mean(converge_n,na.rm = T))
+```
 
 
 ### Testing
